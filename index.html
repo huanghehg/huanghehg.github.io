@@ -259,6 +259,97 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-图文混排" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/03/图文混排/" class="article-date">
+      <time datetime="2017-06-03T02:17:52.000Z" itemprop="datePublished">2017-06-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/03/图文混排/">图文混排初探</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="CoreText研究"><a href="#CoreText研究" class="headerlink" title="CoreText研究"></a><code>CoreText</code>研究</h2><p><a href="https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Introduction/Introduction.html" target="_blank" rel="external">coreText 官方说明</a></p>
+<p>参考链接</p>
+<p><a href="http://www.jianshu.com/p/51c47329203e" target="_blank" rel="external">CoreText实现图文混排之点击事件</a></p>
+<p><a href="http://blog.devtang.com/2015/06/27/using-coretext-1/" target="_blank" rel="external">基于 CoreText 的排版引擎</a></p>
+<p><a href="http://blog.cnbang.net/tech/2729/" target="_blank" rel="external">iOS富文本组件的实现</a></p>
+<hr>
+<p>直接上图</p>
+<div align="center"><br><img src="../images/tuwenhunpaichutan/1.png" width="300" align="center"><br></div>
+
+<p>核心代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">- (void)drawRect:(CGRect)rect &#123;</div><div class="line">    </div><div class="line">    [super drawRect:rect];</div><div class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</div><div class="line">    </div><div class="line">    CGContextSetTextMatrix(context, CGAffineTransformIdentity);</div><div class="line">    CGContextTranslateCTM(context, 0, self.bounds.size.height);</div><div class="line">    CGContextScaleCTM(context, 1.0, -1.0);</div><div class="line">    </div><div class="line">    CGMutablePathRef path = CGPathCreateMutable();</div><div class="line">    CGPathAddRect(path, NULL, self.bounds);</div><div class="line">    </div><div class="line">    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@&quot;我要点击的地方戳一下&quot;];</div><div class="line">    </div><div class="line">    CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef) string);</div><div class="line">    CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);</div><div class="line">    </div><div class="line">    CTFrameDraw(frame, context);</div><div class="line">    </div><div class="line">    CFRelease(path);</div><div class="line">    CFRelease(frameSetter);</div><div class="line">    CFRelease(frame);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码解析：</p>
+<p><code>CGContextRef context = UIGraphicsGetCurrentContext();</code></p>
+<p>简单说就是一个绘画的区域<code>（context）</code></p>
+<p><code>CGContextSetTextMatrix(context, CGAffineTransformIdentity);</code></p>
+<p><a href="https://developer.apple.com/reference/coregraphics/1455611-cgcontextsettextmatrix" target="_blank" rel="external">解释看这里,无法通俗友好描绘</a></p>
+<p><code>CGContextTranslateCTM(context, 0, self.bounds.size.height);</code><br><code>CGContextScaleCTM(context, 1.0, -1.0);</code></p>
+<p>坐标系转换，简单来说平时我们理解的坐标系原点在右下角</p>
+<p><img src="../images/tuwenhunpaichutan/2.png" width="300"></p>
+<p><code>CGContextTranslateCTM(context, 0, self.bounds.size.height);</code></p>
+<p>将坐标系<code>(0,0)</code>移动到<code>(0, self.bounds.size.height)</code>位置，</p>
+<p><img src="../images/tuwenhunpaichutan/3.png" width="300"></p>
+<p><code>CGContextScaleCTM(context, 1.0, -1.0);</code></p>
+<p>将坐标系沿<code>x</code>翻转</p>
+<p><img src="../images/tuwenhunpaichutan/4.png" width="300"></p>
+<p>这样就完美转化成我们开发时的坐标系了    </p>
+<p><code>CGMutablePathRef path = CGPathCreateMutable();</code><br><code>CGPathAddRect(path, NULL, self.bounds);</code></p>
+<p>创建绘制区域  </p>
+<p><code>CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef) string);</code></p>
+<p><code>CTFramesetterRef</code> 生成 <code>CTFrame</code>的工厂</p>
+<p><code>CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);</code></p>
+<p>生成<code>CTFrame</code></p>
+<p><code>CTFrame</code>、<code>CTLine</code>、<code>CTRun</code> 关系如下图：(<code>CTLine</code>、<code>CTRun</code>后面会遇到)</p>
+<p align="center"><img src="../images/tuwenhunpaichutan/5.png"></p>
+
+<p><code>CTFrameDraw(frame, context);</code> 绘制</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
