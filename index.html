@@ -259,6 +259,67 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-python脚本-压缩文件夹" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/21/python脚本-压缩文件夹/" class="article-date">
+      <time datetime="2017-06-21T10:41:47.000Z" itemprop="datePublished">2017-06-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/21/python脚本-压缩文件夹/">python脚本-- 压缩文件夹</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>需求: 备份文件夹生成<code>zip</code></p>
+<ol>
+<li>输入物 –&gt; 文件路径</li>
+<li>输出物 –&gt; 压缩包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python</div><div class="line">#-*- coding:utf-8 -*-</div><div class="line"></div><div class="line">import zipfile</div><div class="line">import glob</div><div class="line">import os</div><div class="line"></div><div class="line">def hh_zipfile(filepath):</div><div class="line">	#去掉路径最后的 `／`</div><div class="line">	if filepath.endswith(&apos;/&apos;):</div><div class="line">		filepath=filepath[0:-1]</div><div class="line"></div><div class="line">	# 获取路径的文件及名称</div><div class="line">	zipfilename = os.path.basename(filepath)</div><div class="line"></div><div class="line">	if zipfilename :</div><div class="line">		print(zipfilename)	</div><div class="line">	else :</div><div class="line">		zipfilename = &apos;归档&apos;	</div><div class="line"></div><div class="line">	# 生成一个zip文件  </div><div class="line">	f = zipfile.ZipFile(zipfilename + &apos;.zip&apos;,&apos;w&apos;,zipfile.ZIP_DEFLATED)</div><div class="line"></div><div class="line">	# 遍历当前路径下的所有文件</div><div class="line">	for parent, dirnames, filenames in os.walk(filepath):</div><div class="line"></div><div class="line">		for filename in filenames:</div><div class="line">			# 拼全路径</div><div class="line">			filenamepath = os.path.join(parent, filename)</div><div class="line">			# 如果是当前文件路径下的子路径，就获取子路径名字</div><div class="line">			subpath = os.path.relpath(filenamepath,start=filepath)</div><div class="line">			# 将文件写入到zip文件中 后面的 `zipfilename + &apos;/&apos; + subpath`  配置zip文件目录层级结构 ，不填的话会默认为传入的路径层级结构</div><div class="line">			f.write(filenamepath,zipfilename + &apos;/&apos; + subpath)</div><div class="line">	# 不执行close 不会在硬盘写入</div><div class="line">	f.close</div><div class="line"></div><div class="line"># 输入文件路径</div><div class="line">filepath = input(&apos;输入待压缩文件夹！\n&apos;)</div><div class="line"></div><div class="line">if os.path.isdir(filepath): #如果文件路径存在就压缩</div><div class="line">	hh_zipfile(filepath)</div><div class="line">else :</div><div class="line">	print (&apos;请输入正确的文件路径&apos;)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-图文混排" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -364,71 +425,7 @@
 <li>如果在找到点击的是哪一个可点击文本</li>
 </ol>
 <p>新增<code>HHCoreTextDataUtil</code>处理判断逻辑</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/05/29/hello-world/" class="article-date">
-      <time datetime="2017-05-29T07:43:51.000Z" itemprop="datePublished">2017-05-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">+ (HHCoreTextLinkModel *)linkModelWithPoint:(CGPoint)touchPoint</div><div class="line">                                       view:(UIView *)touchView</div><div class="line">                                       data:(HHCoreTextData *)data &#123;</div><div class="line">    CFIndex idx = [self touchContentOffsetInView:touchView</div><div class="line">                                        andPoint:touchPoint</div><div class="line">                                            data:data];</div><div class="line">    return [self linkAtIndex:idx linkArray:data.linkArray];</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (CFIndex)touchContentOffsetInView:(UIView *)touchView</div><div class="line">                           andPoint:(CGPoint)touchPoint</div><div class="line">                               data:(HHCoreTextData *)data &#123;</div><div class="line">    CTFrameRef frame = data.frameRef;</div><div class="line">    CFArrayRef lines = CTFrameGetLines(frame);</div><div class="line">    if (!lines) &#123;</div><div class="line">        return -1;</div><div class="line">    &#125;</div><div class="line">    CFIndex count = CFArrayGetCount(lines);</div><div class="line">    CGPoint origins[count];</div><div class="line">    CTFrameGetLineOrigins(frame, CFRangeMake(0, 0), origins);</div><div class="line">    </div><div class="line">    CGAffineTransform transform = CGAffineTransformMakeTranslation(0, touchView.bounds.size.height);</div><div class="line">    transform = CGAffineTransformScale(transform, 1.0, -1.0);</div><div class="line">    </div><div class="line">    CFIndex idx = -1;</div><div class="line">    for (int i = 0; i &lt; count; i ++) &#123;</div><div class="line">        CGPoint origin = origins[i];</div><div class="line">        CTLineRef lineRef = CFArrayGetValueAtIndex(lines, i);</div><div class="line">        </div><div class="line">        CGRect flippedRect = [self getLineBounds:lineRef point:origin];</div><div class="line">        CGRect rect = CGRectApplyAffineTransform(flippedRect, transform);</div><div class="line"></div><div class="line">        if (CGRectContainsPoint(rect, touchPoint)) &#123;</div><div class="line">            // 将点击的坐标转换成相对于当前行的坐标</div><div class="line">            CGPoint relativePoint = CGPointMake(touchPoint.x-CGRectGetMinX(rect),</div><div class="line">                                                touchPoint.y-CGRectGetMinY(rect));</div><div class="line">            // 获得当前点击坐标对应的字符串偏移</div><div class="line">            CFIndex idx = CTLineGetStringIndexForPosition(lineRef, relativePoint);</div><div class="line">            return idx;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return idx;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (CGRect)getLineBounds:(CTLineRef)line point:(CGPoint)point &#123;</div><div class="line">    CGFloat ascent = 0.0f;</div><div class="line">    CGFloat descent = 0.0f;</div><div class="line">    CGFloat leading = 0.0f;</div><div class="line">    CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &amp;ascent, &amp;descent, &amp;leading);</div><div class="line">    CGFloat height = ascent + descent;</div><div class="line">    return CGRectMake(point.x, point.y - descent, width, height);</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (HHCoreTextData *)linkAtIndex:(CFIndex)i linkArray:(NSArray *)linkArray &#123;</div><div class="line">    HHCoreTextData *link = nil;</div><div class="line">    for (HHCoreTextLinkModel *data in linkArray) &#123;</div><div class="line">        if (NSLocationInRange(i, data.range)) &#123;</div><div class="line">            link = data;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return link;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
