@@ -15,19 +15,16 @@
 
 
 
-<meta name="description" content="参考文章： http://www.cnblogs.com/yyds/p/6427349.html https://www.rddoc.com/doc/Python-3.6.0/library/zipfile/  需求: 备份文件夹生成zip  输入物 –&amp;gt; 文件路径 输出物 –&amp;gt; 压缩包  12345678910111213141516171819202122232425262728">
+<meta name="description" content="需求： 对比两个文件夹所有文件找出相同文件  遍历两个文件夹，逐个对比文件 相同的文件copy至新文件夹  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python脚本-- 压缩文件夹">
-<meta property="og:url" content="huanghehg.github.io/2017/06/21/python脚本-压缩文件夹/index.html">
+<meta property="og:title" content="python脚本--文件夹文件对比">
+<meta property="og:url" content="huanghehg.github.io/2017/06/22/python脚本-文件夹文件对比/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="参考文章： http://www.cnblogs.com/yyds/p/6427349.html https://www.rddoc.com/doc/Python-3.6.0/library/zipfile/  需求: 备份文件夹生成zip  输入物 –&amp;gt; 文件路径 输出物 –&amp;gt; 压缩包  12345678910111213141516171819202122232425262728">
-<meta property="og:image" content="huanghehg.github.io/2017/06/21/images/python/python_yasuowenjianjia1.png">
-<meta property="og:image" content="huanghehg.github.io/2017/06/21/images/python/python_yasuowenjianjia2.png">
-<meta property="og:updated_time" content="2017-06-21T11:43:12.000Z">
+<meta property="og:description" content="需求： 对比两个文件夹所有文件找出相同文件  遍历两个文件夹，逐个对比文件 相同的文件copy至新文件夹  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777">
+<meta property="og:updated_time" content="2017-06-22T12:08:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python脚本-- 压缩文件夹">
-<meta name="twitter:description" content="参考文章： http://www.cnblogs.com/yyds/p/6427349.html https://www.rddoc.com/doc/Python-3.6.0/library/zipfile/  需求: 备份文件夹生成zip  输入物 –&amp;gt; 文件路径 输出物 –&amp;gt; 压缩包  12345678910111213141516171819202122232425262728">
-<meta name="twitter:image" content="huanghehg.github.io/2017/06/21/images/python/python_yasuowenjianjia1.png">
+<meta name="twitter:title" content="python脚本--文件夹文件对比">
+<meta name="twitter:description" content="需求： 对比两个文件夹所有文件找出相同文件  遍历两个文件夹，逐个对比文件 相同的文件copy至新文件夹  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>python脚本-- 压缩文件夹 | 黄河的个人空间</title>
+<title>python脚本--文件夹文件对比 | 黄河的个人空间</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +256,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-python脚本-压缩文件夹" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python脚本-文件夹文件对比" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/06/21/python脚本-压缩文件夹/" class="article-date">
-      <time datetime="2017-06-21T10:41:47.000Z" itemprop="datePublished">2017-06-21</time>
+      <a href="/2017/06/22/python脚本-文件夹文件对比/" class="article-date">
+      <time datetime="2017-06-22T02:28:26.000Z" itemprop="datePublished">2017-06-22</time>
 </a>
 
 
@@ -278,7 +275,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      python脚本-- 压缩文件夹
+      python脚本--文件夹文件对比
     </h1>
   
 
@@ -295,30 +292,14 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
-<p>参考文章：</p>
-<p><a href="http://www.cnblogs.com/yyds/p/6427349.html" target="_blank" rel="external">http://www.cnblogs.com/yyds/p/6427349.html</a></p>
-<p><a href="https://www.rddoc.com/doc/Python-3.6.0/library/zipfile/" target="_blank" rel="external">https://www.rddoc.com/doc/Python-3.6.0/library/zipfile/</a></p>
-<hr>
-<p>需求: 备份文件夹生成<code>zip</code></p>
+        <p>需求： 对比两个文件夹所有文件找出相同文件</p>
 <ol>
-<li>输入物 –&gt; 文件路径</li>
-<li>输出物 –&gt; 压缩包</li>
+<li>遍历两个文件夹，逐个对比文件</li>
+<li>相同的文件<code>copy</code>至新文件夹</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python</div><div class="line">#-*- coding:utf-8 -*-</div><div class="line"></div><div class="line">import zipfile</div><div class="line">import os</div><div class="line"></div><div class="line">def hh_zipfile(filepath):</div><div class="line">	#去掉路径最后的 `／`</div><div class="line">	if filepath.endswith(&apos;/&apos;):</div><div class="line">		filepath=filepath[0:-1]</div><div class="line"></div><div class="line">	# 获取路径的文件及名称</div><div class="line">	zipfilename = os.path.basename(filepath)</div><div class="line"></div><div class="line">	if zipfilename :</div><div class="line">		print(zipfilename)	</div><div class="line">	else :</div><div class="line">		zipfilename = &apos;归档&apos;	</div><div class="line"></div><div class="line">	# 生成一个zip文件  </div><div class="line">	f = zipfile.ZipFile(zipfilename + &apos;.zip&apos;,&apos;w&apos;,zipfile.ZIP_DEFLATED)</div><div class="line"></div><div class="line">	# 遍历当前路径下的所有文件</div><div class="line">	for parent, dirnames, filenames in os.walk(filepath):</div><div class="line"></div><div class="line">		for filename in filenames:</div><div class="line">			# 拼全路径</div><div class="line">			filenamepath = os.path.join(parent, filename)</div><div class="line">			# 如果是当前文件路径下的子路径，就获取子路径名字</div><div class="line">			subpath = os.path.relpath(filenamepath,start=filepath)</div><div class="line">			# 将文件写入到zip文件中 后面的 `zipfilename + &apos;/&apos; + subpath`  配置zip文件目录层级结构 ，不填的话会默认为传入的路径层级结构</div><div class="line">			f.write(filenamepath,zipfilename + &apos;/&apos; + subpath)</div><div class="line">	# 不执行close 不会在硬盘写入</div><div class="line">	f.close</div><div class="line"></div><div class="line"># 输入文件路径</div><div class="line">filepath = input(&apos;输入待压缩文件夹！\n&apos;)</div><div class="line"></div><div class="line">if os.path.isdir(filepath): #如果文件路径存在就压缩</div><div class="line">	hh_zipfile(filepath)</div><div class="line">else :</div><div class="line">	print (&apos;请输入正确的文件路径&apos;)</div></pre></td></tr></table></figure>
-<p><a href="https://docs.python.org/3/library/zipfile.html" target="_blank" rel="external">zipfile</a>是归档压缩标准。</p>
-<p><code>zipfile.ZipFile(file, mode=&#39;r&#39;, compression=ZIP_STORED, allowZip64=True)</code></p>
-<ol>
-<li><code>file</code> : 文件 <code>path</code>,可以理解为压缩后的文件名字</li>
-<li><code>mode</code> : <code>r</code> 读取存在的文件 <code>w</code>新建一个或者覆盖原来的 <code>a</code> 向原来的文件追加 <code>x</code>生成新文件</li>
-<li><code>compression</code> : 压缩方法， 默认为<code>ZIP_STORED</code> <a href="https://www.rddoc.com/doc/Python-3.6.0/library/zipfile/" target="_blank" rel="external">详细信息</a></li>
-<li><code>allowZip64</code> : 当zip文件大于2 GiB时，zipfile将创建使用ZIP64扩展名的ZIP文件</li>
-</ol>
-<p><code>os.path.basename(path)</code>返回路径名的基名称</p>
-<div><br><img src="../images/python/python_yasuowenjianjia1.png" width="500"><br></div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python</div><div class="line">#-*- coding:utf-8 -*-</div><div class="line"></div><div class="line"># import filecmp</div><div class="line">import hashlib</div><div class="line">import os</div><div class="line">import shutil</div><div class="line"></div><div class="line"></div><div class="line">def getmd5(filename):</div><div class="line">	file_text = open(filename,&apos;rb&apos;).read()</div><div class="line">	m = hashlib.md5(file_text)</div><div class="line">	return m.hexdigest()</div><div class="line"></div><div class="line">def get_allfiles(filepath):</div><div class="line">	filepaths = []</div><div class="line">	for parent,dirs,filenames in os.walk(filepath):</div><div class="line">		for filename in filenames:</div><div class="line">			if filename.startswith(&apos;.&apos;):</div><div class="line">				pass</div><div class="line">			file = os.path.join(parent, filename)</div><div class="line">			filepaths.append(file)</div><div class="line">	return filepaths</div><div class="line"></div><div class="line">def delete_samefile(filepath):</div><div class="line">	delete_files = []</div><div class="line">	extentfile = []</div><div class="line">	md5files = &#123;&#125;</div><div class="line">	allfilePath = get_allfiles(filepath)</div><div class="line">	for file in allfilePath:		</div><div class="line">		filemd5 = getmd5(file)</div><div class="line">		if filemd5 in md5files.keys():</div><div class="line">		   # 将删除的文件名与保留的文件名一起打印出来</div><div class="line">			delete_files.append(file)</div><div class="line">			filenameor = md5files[filemd5]</div><div class="line">			delete_files.append(filenameor)</div><div class="line">			os.remove(file)</div><div class="line">		else :</div><div class="line">			md5files[filemd5] = file</div><div class="line">			extentfile.append(file)</div><div class="line"></div><div class="line">	print(delete_files)</div><div class="line">	print(&apos;\n&apos;)</div><div class="line">	return extentfile</div><div class="line"></div><div class="line">def hh_compare_file(filedir1,filedir2):</div><div class="line"></div><div class="line">	if os.path.exists(&apos;./allhavefile&apos;):</div><div class="line">		shutil.rmtree(&apos;./allhavefile&apos;)</div><div class="line"></div><div class="line">	os.mkdir(&apos;allhavefile&apos;)</div><div class="line"></div><div class="line">	# 删除当前路径下重复的文件</div><div class="line">	fileresult1 = delete_samefile(filedir1)</div><div class="line"></div><div class="line">	fileresult2 = delete_samefile(filedir2)</div><div class="line"></div><div class="line"></div><div class="line">	for file in fileresult1:</div><div class="line">		if os.path.isfile(file):</div><div class="line">			for file2 in fileresult2:</div><div class="line">				if os.path.isfile(file2):</div><div class="line">					# 大小不同说明不一样</div><div class="line">					if os.stat(file2).st_size != os.stat(file).st_size :</div><div class="line">						continue</div><div class="line"></div><div class="line">					md5file1 = getmd5(file)</div><div class="line">					md5file2 = getmd5(file2)</div><div class="line">					if md5file1 == md5file2:</div><div class="line">						shutil.copy(file,&apos;./allhavefile&apos;)</div><div class="line">						shutil.copy(file2,&apos;./allhavefile&apos;)</div><div class="line">						os.remove(file)</div><div class="line">						os.remove(file2)</div><div class="line">						break</div><div class="line"></div><div class="line"></div><div class="line">print (&apos;# 1、删除文件路径下重复文件\n # 2、找出两个文件夹相同文件&apos;)</div><div class="line"></div><div class="line">str = input()</div><div class="line"></div><div class="line">if str == &apos;1&apos;:</div><div class="line">	print (&quot;路径1:\n&quot;)</div><div class="line">	filedir = input()</div><div class="line"></div><div class="line">	delete_samefile(filedir)</div><div class="line"></div><div class="line">elif str == &apos;2&apos;:</div><div class="line">	print (&quot;路径1:\n&quot;)</div><div class="line">	filedir1 = input()</div><div class="line"></div><div class="line">	print (&quot;路径2:\n&quot;)</div><div class="line">	filedir2 = input()</div><div class="line"></div><div class="line">	hh_compare_file(filedir1,filedir2)</div></pre></td></tr></table></figure>
+<p>继续学习优化算法</p>
 
-<p><code>os.path.relpath(path,start=path1)</code> 返回<code>path</code>相对于<code>path1</code>的路径</p>
-<div><br><img src="../images/python/python_yasuowenjianjia2.png" width="500"><br></div>
       
     </div>
     
@@ -326,13 +307,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/06/21/python脚本-压缩文件夹/">python脚本-- 压缩文件夹</a></p>
+        <p><span>本文标题:</span><a href="/2017/06/22/python脚本-文件夹文件对比/">python脚本--文件夹文件对比</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">huanghe</a></p>
-        <p><span>发布时间:</span>2017-06-21, 18:41:47</p>
-        <p><span>最后更新:</span>2017-06-21, 19:43:12</p>
+        <p><span>发布时间:</span>2017-06-22, 10:28:26</p>
+        <p><span>最后更新:</span>2017-06-22, 20:08:04</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/21/python脚本-压缩文件夹/" title="python脚本-- 压缩文件夹">huanghehg.github.io/2017/06/21/python脚本-压缩文件夹/</a>
-            <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2017/06/21/python脚本-压缩文件夹/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/22/python脚本-文件夹文件对比/" title="python脚本--文件夹文件对比">huanghehg.github.io/2017/06/22/python脚本-文件夹文件对比/</a>
+            <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2017/06/22/python脚本-文件夹文件对比/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -344,16 +325,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/06/22/python脚本-文件夹文件对比/">
-                    python脚本--文件夹文件对比
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/06/03/图文混排/">
-                    图文混排初探
+                <a href="/2017/06/21/python脚本-压缩文件夹/">
+                    python脚本-- 压缩文件夹
                 </a>
             </div>
         
@@ -401,7 +376,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"python脚本-- 压缩文件夹　| 黄河的个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"python脚本--文件夹文件对比　| 黄河的个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -421,15 +396,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/06/22/python脚本-文件夹文件对比/" title="上一篇: python脚本--文件夹文件对比">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/06/03/图文混排/" title="下一篇: 图文混排初探">
+            <a href="/2017/06/21/python脚本-压缩文件夹/" title="下一篇: python脚本-- 压缩文件夹">
                 <i class="fa fa-angle-right"></i>
             </a>
         
