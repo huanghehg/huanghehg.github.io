@@ -1,285 +1,80 @@
-<!DOCTYPE html>
-<html >
+<!DOCTYPE HTML>
+<html>
 <head>
-
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="huanghe" />
-
-
-
-<meta name="description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51325836 一、命令行安装1、升级ruby环境sudo gem update --system Password:/*此处输入密码*/ 当系统提示    RubyGems system software updated        说明更新成功 2、ruby环境">
-<meta property="og:type" content="article">
-<meta property="og:title" content="黄河的个人空间">
-<meta property="og:url" content="huanghehg.github.io/2017/11/09/Cocoapods基础/index.html">
-<meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51325836 一、命令行安装1、升级ruby环境sudo gem update --system Password:/*此处输入密码*/ 当系统提示    RubyGems system software updated        说明更新成功 2、ruby环境">
-<meta property="og:image" content="http://img.blog.csdn.net/20160505200053368">
-<meta property="og:image" content="http://img.blog.csdn.net/20160505200344943">
-<meta property="og:image" content="http://img.blog.csdn.net/20160505201016434">
-<meta property="og:image" content="http://img.blog.csdn.net/20160505201237658">
-<meta property="og:updated_time" content="2017-11-09T07:16:55.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="黄河的个人空间">
-<meta name="twitter:description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51325836 一、命令行安装1、升级ruby环境sudo gem update --system Password:/*此处输入密码*/ 当系统提示    RubyGems system software updated        说明更新成功 2、ruby环境">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160505200053368">
-
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
-
-
-    <link rel="alternate" href="/atom.xml" title="黄河的个人空间" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="/favicon.png">
-
-
-
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>黄河的个人空间</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: false,
-        isPost: true,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: undefined
-    }
-</script>
-
-
-    <script> yiliaConfig.jquery_ui = [false]; </script>
-
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
-
-
-
-
-
-
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>Cocoapods 基础</title>
+  <meta name="author" content="huanghe">
+  <meta name="description" content="从CSDN移动到个人博客
+原文地址http://blog.csdn.net/u014452002/article/details/51325836
+一、命令行安装1、升级ruby环境sudo gem update --system
+Password:/*此处输入密码*/
+当系统提示    RubyG">
+  
+  
+  <meta property="og:title" content="Cocoapods 基础"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="黄河的个人空间"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="黄河的个人空间" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
+
 <body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/avatar.png" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">huanghe</a></h1>
-        </hgroup>
-
-        
-
-        
-
-
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">专注于前端</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>                
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">huanghe</a></h1>
+  <a id="top"></a>
+  <div id="main">
+    <div class="behind">
+      <a href="/" class="back black-color">
+        <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M2 30 L30 2 M30 30 L2 2"></path>
+        </svg>
+      </a>
+      <div class="description">
+        &nbsp;
       </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/avatar.png" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">huanghe</a></h1>
-            </hgroup>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-            </nav>
-        </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
-</nav>
-      <div class="body-wrap"><article id="post-Cocoapods基础" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/11/09/Cocoapods基础/" class="article-date">
-      <time datetime="2017-11-09T07:12:17.000Z" itemprop="datePublished">2017-11-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+    <div class="container">
       
-          
-        <p>从<code>CSDN</code>移动到个人博客</p>
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        Cocoapods 基础
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2017-11-09T07:12:17.000Z">
+<svg class="i-calendar" viewBox="0 0 32 32" width="14" height="14" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2017-11-09
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>从<code>CSDN</code>移动到个人博客</p>
 <p>原文地址<a href="http://blog.csdn.net/u014452002/article/details/51325836" target="_blank" rel="external">http://blog.csdn.net/u014452002/article/details/51325836</a></p>
 <h4 id="一、命令行安装"><a href="#一、命令行安装" class="headerlink" title="一、命令行安装"></a>一、命令行安装</h4><h5 id="1、升级ruby环境"><a href="#1、升级ruby环境" class="headerlink" title="1、升级ruby环境"></a>1、升级ruby环境</h5><pre><code>sudo gem update --system
 Password:/*此处输入密码*/
@@ -309,213 +104,67 @@ https://ruby.taobao.org/
 <hr>
 <p>输入要安装的插件，<code>install</code>就ok</p>
 <hr>
-<h4 id="三、cocoapods的简单使用-（仅限命令行）"><a href="#三、cocoapods的简单使用-（仅限命令行）" class="headerlink" title="三、cocoapods的简单使用 （仅限命令行）"></a>三、cocoapods的简单使用 （仅限命令行）</h4><h5 id="1、首先-cd到项目文件中"><a href="#1、首先-cd到项目文件中" class="headerlink" title="1、首先 cd到项目文件中"></a>1、首先 <code>cd</code>到项目文件中</h5><h5 id="2、新建名字为Podfile的文件-项目中有Podfile文件的直接走到-4"><a href="#2、新建名字为Podfile的文件-项目中有Podfile文件的直接走到-4" class="headerlink" title="2、新建名字为Podfile的文件,项目中有Podfile文件的直接走到 4"></a>2、新建名字为<code>Podfile</code>的文件,项目中有<code>Podfile</code>文件的直接走到 4</h5><h5 id="3、打开-Podfile-，输入-platform-ios-‘7-0‘"><a href="#3、打开-Podfile-，输入-platform-ios-‘7-0‘" class="headerlink" title="3、打开 Podfile ，输入  platform:ios, ‘7.0‘"></a>3、打开 <code>Podfile</code> ，输入  <code>platform:ios, ‘7.0‘</code></h5><h5 id="4、在终端输入pod-search-sdwebimage"><a href="#4、在终端输入pod-search-sdwebimage" class="headerlink" title="4、在终端输入pod search sdwebimage"></a>4、在终端输入<code>pod search sdwebimage</code></h5><p><img src="http://img.blog.csdn.net/20160505201016434" alt="这里写图片描述"></p>
-<h5 id="5、找到你所需要的第三方库-找到-pod-39-SDWebImage-39-39-gt-3-7-5-39-，复制到Podfile文件中，其中3-7-5是版本号-，可以修改为-versions中的任意一个"><a href="#5、找到你所需要的第三方库-找到-pod-39-SDWebImage-39-39-gt-3-7-5-39-，复制到Podfile文件中，其中3-7-5是版本号-，可以修改为-versions中的任意一个" class="headerlink" title="5、找到你所需要的第三方库 找到  pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.5&#39;，复制到Podfile文件中，其中3.7.5是版本号 ，可以修改为 versions中的任意一个"></a>5、找到你所需要的第三方库 找到  <code>pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.5&#39;</code>，复制到<code>Podfile</code>文件中，其中<code>3.7.5</code>是版本号 ，可以修改为 <code>versions</code>中的任意一个</h5><p><img src="http://img.blog.csdn.net/20160505201237658" alt="这里写图片描述"></p>
-<h5 id="6、保存Podfile-在终端执行-pod-instal-等待一会儿第三方库会自动clone在项目中（该过程时间有点久-可以在后面加上参数-verbose-no-repo-update-，具体原因google）"><a href="#6、保存Podfile-在终端执行-pod-instal-等待一会儿第三方库会自动clone在项目中（该过程时间有点久-可以在后面加上参数-verbose-no-repo-update-，具体原因google）" class="headerlink" title="6、保存Podfile 在终端执行 pod instal  等待一会儿第三方库会自动clone在项目中（该过程时间有点久 可以在后面加上参数   --verbose --no-repo-update ，具体原因google）"></a>6、保存<code>Podfile</code> 在终端执行 <code>pod instal</code>  等待一会儿第三方库会自动<code>clone</code>在项目中（该过程时间有点久 可以在后面加上参数   <strong><code>--verbose --no-repo-update</code></strong> ，具体原因google）</h5><hr>
+<h4 id="三、cocoapods的简单使用-（仅限命令行）"><a href="#三、cocoapods的简单使用-（仅限命令行）" class="headerlink" title="三、cocoapods的简单使用 （仅限命令行）"></a>三、cocoapods的简单使用 （仅限命令行）</h4><p>1、首先 <code>cd</code>到项目文件中<br>2、新建名字为<code>Podfile</code>的文件,项目中有<code>Podfile</code>文件的直接走到 4<br>3、打开 <code>Podfile</code> ，输入  <code>platform:ios, ‘7.0‘</code><br>4、在终端输入<code>pod search sdwebimage</code><br><img src="http://img.blog.csdn.net/20160505201016434" alt="这里写图片描述"><br>5、找到你所需要的第三方库 找到  <code>pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.5&#39;</code>，复制到<code>Podfile</code>文件中，其中<code>3.7.5</code>是版本号 ，可以修改为 <code>versions</code>中的任意一个<br><img src="http://img.blog.csdn.net/20160505201237658" alt="这里写图片描述"><br>6、保存<code>Podfile</code> 在终端执行 <code>pod instal</code>  等待一会儿第三方库会自动<code>clone</code>在项目中（该过程时间有点久 可以在后面加上参数   <strong><code>--verbose --no-repo-update</code></strong> ，不更新<code>repo</code>）</p>
+<hr>
 <p><strong>注意：对于项目中有<code>Podfile</code>文件，一定要<code>cd</code>到<code>Podfile</code> 文件所在的目录 执行<code>pod install</code><br>上传到git时，只需要上传Podfile 文件，其他自动生成的文件不要上传</strong></p>
 
-      
-    </div>
-    
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
   </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/11/09/Cocoapods基础/"></a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">huanghe</a></p>
-        <p><span>发布时间:</span>2017-11-09, 15:12:17</p>
-        <p><span>最后更新:</span>2017-11-09, 15:16:55</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/11/09/Cocoapods基础/" title="">huanghehg.github.io/2017/11/09/Cocoapods基础/</a>
-            <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2017/11/09/Cocoapods基础/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
+
+
+
+
     </div>
-
-
-
-    <nav id="article-nav">
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/11/09/Cocoapods管理私有库1/">
-                    
-                </a>
-            </div>
-        
-    </nav>
-
-  
-</article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、命令行安装"><span class="toc-number">1.</span> <span class="toc-text">一、命令行安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、升级ruby环境"><span class="toc-number">1.1.</span> <span class="toc-text">1、升级ruby环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、ruby环境更新完成就可以安装cocoa-pods"><span class="toc-number">1.2.</span> <span class="toc-text">2、ruby环境更新完成就可以安装cocoa pods</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、使用xcode安装"><span class="toc-number">2.</span> <span class="toc-text">二、使用xcode安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、cocoapods的简单使用-（仅限命令行）"><span class="toc-number">3.</span> <span class="toc-text">三、cocoapods的简单使用 （仅限命令行）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、首先-cd到项目文件中"><span class="toc-number">3.1.</span> <span class="toc-text">1、首先 cd到项目文件中</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、新建名字为Podfile的文件-项目中有Podfile文件的直接走到-4"><span class="toc-number">3.2.</span> <span class="toc-text">2、新建名字为Podfile的文件,项目中有Podfile文件的直接走到 4</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、打开-Podfile-，输入-platform-ios-‘7-0‘"><span class="toc-number">3.3.</span> <span class="toc-text">3、打开 Podfile ，输入  platform:ios, ‘7.0‘</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、在终端输入pod-search-sdwebimage"><span class="toc-number">3.4.</span> <span class="toc-text">4、在终端输入pod search sdwebimage</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5、找到你所需要的第三方库-找到-pod-39-SDWebImage-39-39-gt-3-7-5-39-，复制到Podfile文件中，其中3-7-5是版本号-，可以修改为-versions中的任意一个"><span class="toc-number">3.5.</span> <span class="toc-text">5、找到你所需要的第三方库 找到  pod 'SDWebImage', '~> 3.7.5'，复制到Podfile文件中，其中3.7.5是版本号 ，可以修改为 versions中的任意一个</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6、保存Podfile-在终端执行-pod-instal-等待一会儿第三方库会自动clone在项目中（该过程时间有点久-可以在后面加上参数-verbose-no-repo-update-，具体原因google）"><span class="toc-number">3.6.</span> <span class="toc-text">6、保存Podfile 在终端执行 pod instal  等待一会儿第三方库会自动clone在项目中（该过程时间有点久 可以在后面加上参数   --verbose --no-repo-update ，具体原因google）</span></a></li></ol></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"　| 黄河的个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
+  </div>
+  <footer class="page-footer"><div class="clearfix">
 </div>
-
-
-
-
-
-
-
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2017/11/09/Cocoapods管理私有库1/" title="下一篇: ">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © XXX 20xx-2017
     </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapods基础/">Cocoapods基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapods管理私有库1/">Cocoapods管理私有库1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapod/">Cocoapod</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/22/python脚本-文件夹文件对比/">python脚本--文件夹文件对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/python脚本-压缩文件夹/">python脚本-- 压缩文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/图文混排/">图文混排初探</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
+    <div class="secondrow">
+        <a href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
 </div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2016-2017 huanghe
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
-            </div>
-        </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
-    </div>
+<div class="clearfix">
+</div>
 </footer>
-    </div>
-    
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
 
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
+// disqus scripts
 
 
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
 
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
 
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
-<script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
 </script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-  </div>
 </body>
 </html>
