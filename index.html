@@ -137,13 +137,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -255,9 +255,145 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Cocoapods基础" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/09/Cocoapods基础/" class="article-date">
+      <time datetime="2017-11-09T07:12:17.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h4 id="一、命令行安装"><a href="#一、命令行安装" class="headerlink" title="一、命令行安装"></a>一、命令行安装</h4><h5 id="1、升级ruby环境"><a href="#1、升级ruby环境" class="headerlink" title="1、升级ruby环境"></a>1、升级ruby环境</h5><pre><code>sudo gem update --system
+Password:/*此处输入密码*/
+</code></pre><p>当系统提示    <code>RubyGems system software updated</code>        说明更新成功</p>
+<h5 id="2、ruby环境更新完成就可以安装cocoa-pods"><a href="#2、ruby环境更新完成就可以安装cocoa-pods" class="headerlink" title="2、ruby环境更新完成就可以安装cocoa pods"></a>2、ruby环境更新完成就可以安装cocoa pods</h5><pre><code>gem sources --remove https://rubygems.org/
+gem sources -a https://ruby.taobao.org/
+</code></pre><p>以上两步是为了替换sources路径（天朝不解释）</p>
+<pre><code>gem sources -l
+*** CURRENT SOURCES ***
+https://ruby.taobao.org/
+</code></pre><p>替换成功执行</p>
+<pre><code>sudo gem install cocoapods
+</code></pre><p>输入密码之后就坐等成功</p>
+<h4 id="二、使用xcode安装"><a href="#二、使用xcode安装" class="headerlink" title="二、使用xcode安装"></a>二、使用xcode安装</h4><hr>
+<p>直接去<a href="https://github.com/kattrali/cocoapods-xcode-plugin" target="_blank" rel="external">github</a>下载工程，运行，重启xcode，搞定</p>
+<hr>
+<p>安装<a href="http://alcatraz.io" target="_blank" rel="external">Alcatraz</a> 插件</p>
+<pre><code>curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh
+</code></pre><hr>
+<p>重启xcode 打开Window</p>
+<hr>
+<p><img src="http://img.blog.csdn.net/20160505200053368" alt=""></p>
+<hr>
+<p>选择Package Manager</p>
+<hr>
+<p><img src="http://img.blog.csdn.net/20160505200344943" alt=""></p>
+<hr>
+<p>输入要安装的插件，<code>install</code>就ok</p>
+<hr>
+<h4 id="三、cocoapods的简单使用-（仅限命令行）"><a href="#三、cocoapods的简单使用-（仅限命令行）" class="headerlink" title="三、cocoapods的简单使用 （仅限命令行）"></a>三、cocoapods的简单使用 （仅限命令行）</h4><h5 id="1、首先-cd到项目文件中"><a href="#1、首先-cd到项目文件中" class="headerlink" title="1、首先 cd到项目文件中"></a>1、首先 <code>cd</code>到项目文件中</h5><h5 id="2、新建名字为Podfile的文件-项目中有Podfile文件的直接走到-4"><a href="#2、新建名字为Podfile的文件-项目中有Podfile文件的直接走到-4" class="headerlink" title="2、新建名字为Podfile的文件,项目中有Podfile文件的直接走到 4"></a>2、新建名字为<code>Podfile</code>的文件,项目中有<code>Podfile</code>文件的直接走到 4</h5><h5 id="3、打开-Podfile-，输入-platform-ios-‘7-0‘"><a href="#3、打开-Podfile-，输入-platform-ios-‘7-0‘" class="headerlink" title="3、打开 Podfile ，输入  platform:ios, ‘7.0‘"></a>3、打开 <code>Podfile</code> ，输入  <code>platform:ios, ‘7.0‘</code></h5><h5 id="4、在终端输入pod-search-sdwebimage"><a href="#4、在终端输入pod-search-sdwebimage" class="headerlink" title="4、在终端输入pod search sdwebimage"></a>4、在终端输入<code>pod search sdwebimage</code></h5><p><img src="http://img.blog.csdn.net/20160505201016434" alt="这里写图片描述"></p>
+<h5 id="5、找到你所需要的第三方库-找到-pod-39-SDWebImage-39-39-gt-3-7-5-39-，复制到Podfile文件中，其中3-7-5是版本号-，可以修改为-versions中的任意一个"><a href="#5、找到你所需要的第三方库-找到-pod-39-SDWebImage-39-39-gt-3-7-5-39-，复制到Podfile文件中，其中3-7-5是版本号-，可以修改为-versions中的任意一个" class="headerlink" title="5、找到你所需要的第三方库 找到  pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.5&#39;，复制到Podfile文件中，其中3.7.5是版本号 ，可以修改为 versions中的任意一个"></a>5、找到你所需要的第三方库 找到  <code>pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.5&#39;</code>，复制到<code>Podfile</code>文件中，其中<code>3.7.5</code>是版本号 ，可以修改为 <code>versions</code>中的任意一个</h5><p><img src="http://img.blog.csdn.net/20160505201237658" alt="这里写图片描述"></p>
+<h5 id="6、保存Podfile-在终端执行-pod-instal-等待一会儿第三方库会自动clone在项目中（该过程时间有点久-可以在后面加上参数-verbose-no-repo-update-，具体原因google）"><a href="#6、保存Podfile-在终端执行-pod-instal-等待一会儿第三方库会自动clone在项目中（该过程时间有点久-可以在后面加上参数-verbose-no-repo-update-，具体原因google）" class="headerlink" title="6、保存Podfile 在终端执行 pod instal  等待一会儿第三方库会自动clone在项目中（该过程时间有点久 可以在后面加上参数   --verbose --no-repo-update ，具体原因google）"></a>6、保存<code>Podfile</code> 在终端执行 <code>pod instal</code>  等待一会儿第三方库会自动<code>clone</code>在项目中（该过程时间有点久 可以在后面加上参数   <strong><code>--verbose --no-repo-update</code></strong> ，具体原因google）</h5><hr>
+<p><strong>注意：对于项目中有<code>Podfile</code>文件，一定要<code>cd</code>到<code>Podfile</code> 文件所在的目录 执行<code>pod install</code><br>上传到git时，只需要上传Podfile 文件，其他自动生成的文件不要上传</strong></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Cocoapods管理私有库1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/09/Cocoapods管理私有库1/" class="article-date">
+      <time datetime="2017-11-09T07:07:31.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>从<code>CSDN</code>移动到个人博客</p>
+<p>原文地址<a href="http://blog.csdn.net/u014452002/article/details/51330824" target="_blank" rel="external">http://blog.csdn.net/u014452002/article/details/51330824</a></p>
+<p>参考文章<br><a href="http://www.cocoachina.com/ios/20150228/11206.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150228/11206.html</a><br><a href="http://blog.csdn.net/yohunl/article/details/48471489" target="_blank" rel="external">http://blog.csdn.net/yohunl/article/details/48471489</a></p>
+<p>准备工作</p>
+<p><em>1、有自己的git仓库</em><br><em>2、需要管理的私有库</em></p>
+<hr>
+<p>在git服务器上新建一个私有库<code>MyPrivateCocoaRepo</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$pod repo add MyPrivateCocoaRepo https://git.oschina.net/huanghehg/MyPrivateCocoaRepo.git</div><div class="line">Cloning spec repo `MyPrivateCocoaRepo` from `https://git.oschina.net/huanghehg/MyPrivateCocoaRepo.git`</div></pre></td></tr></table></figure></p>
+<p>将自己的需要管理的库克隆到本地,<code>cd</code>到目录下,打上<code>tag</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$git clone https://git.oschina.net/huanghehg/MyTool.git</div><div class="line">$cd ~/MyTool</div><div class="line">$git tag 0.0.6</div><div class="line">$git push --tags</div></pre></td></tr></table></figure></p>
+<p>在该目录下创建<code>spec</code>文件,<code>vim</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$pod spec create MyTool https://git.oschina.net/huanghehg/MyTool.git</div><div class="line">$vim MyTool.podspec</div></pre></td></tr></table></figure></p>
+<p>删除注释，不删除也可以但是看起来不方便<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new do |s|</div><div class="line">  s.name             = &quot;MyTool&quot;    #名称</div><div class="line">  s.version          = &quot;0.1.0&quot;             #版本号</div><div class="line">  s.summary          = &quot;Just Testing. MyTool&quot;     #简短介绍，下面是详细介绍</div><div class="line">  s.description      = &lt;&lt;-DESC</div><div class="line">                       Testing Private Podspec.</div><div class="line">                       *it is just a test file</div><div class="line">                       DESC</div><div class="line">  s.homepage         = &quot;https://git.oschina.net/huanghehg/MyTool.git&quot;                        #主页,这里要填写可以访问到的地址，不然验证不通过</div><div class="line">  s.license          = &apos;MIT&apos;              #开源协议</div><div class="line">  s.author           = &#123; &quot;huanghehg&quot; =&gt; &quot;huanghehg@163.com&quot; &#125;            #作者信息</div><div class="line">  s.source           = &#123; :git =&gt; &quot;https://git.oschina.net/huanghehg/MyTool.git&quot;, :tag =&gt; &quot;0.1.0&quot; &#125;      #项目地址，这里不支持ssh的地址，验证不通过，只支持HTTP和HTTPS，最好使用HTTPS</div><div class="line">  s.platform     = :ios, &apos;7.0&apos;            #支持的平台及版本</div><div class="line">  s.requires_arc = true                   #是否使用ARC，如果指定具体文件，则具体的问题使用ARC</div><div class="line"></div><div class="line">  s.source_files = &apos;Pod/Classes/**/*&apos;     #代码源文件地址，**/*表示Classes目录及其子目录下所有文件，如果有多个目录下则用逗号分开，如果需要在项目中分组显示，这里也要做相应的设置</div><div class="line">  s.resource_bundles = &#123;</div><div class="line">    &apos;PodTestLibrary&apos; =&gt; [&apos;Pod/Assets/*.png&apos;]</div><div class="line">  &#125;                                       #资源文件地址</div><div class="line"></div><div class="line">  s.public_header_files = &apos;Pod/Classes/**/*.h&apos;   #公开头文件地址</div><div class="line">  s.frameworks = &apos;UIKit&apos;                  #所需的framework，多个用逗号隔开</div><div class="line">  s.dependency &apos;AFNetworking&apos;, &apos;~&gt; 2.3&apos;   #依赖关系，该项目所依赖的其他库，如果有多个需要填写多个s.dependency</div><div class="line">end&lt;/twitter_username&gt;</div></pre></td></tr></table></figure></p>
+<p>配置完成保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pod lib lint (验证，不能出现error 如果出现warn 可以在后面跟上--allow-warnings,但不能确保你的类正确)</div><div class="line">MyTool passed validation.</div></pre></td></tr></table></figure></p>
+<p>然后就可以将<code>spec</code>提交到刚开始的<code>repo</code>里了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo push MyPrivateCocoaRepo MyTool.podspec (--allow-warnings)</div></pre></td></tr></table></figure></p>
+<p>此时<code>pod search MyTool</code><br><img src="http://img.blog.csdn.net/20160506131053930" alt="这里写图片描述"><br>就可以在Podfile中使用了</p>
+<hr>
+<p>以上是添加到私有库的方法,在项目中使用时需要在<code>Podfile</code>中添加刚刚新建的私有<code>repo</code>地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">source &apos;https://git.oschina.net/huanghehg/MyPrivateCocoaRepo.git&apos;</div><div class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</div></pre></td></tr></table></figure></p>
+<p>添加到<code>public</code>的方法后期会在总结</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Cocoapod" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -612,14 +748,14 @@
                 2016-2017 huanghe
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -628,7 +764,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -661,9 +797,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
