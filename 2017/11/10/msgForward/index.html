@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="huanghehg.github.io">
   <title>消息转发 | 黄河的个人空间</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="996的生活持续了好久，期间项目组各种新项目，博客感觉要荒废～～～  把这段时间项目期间的大神分享拿来总结一下 ^_^  之前对于消息转发一直处于懵懂状态，因为平时用到的并不多，通过这个分享详细研究下～～～ 参考文章ibireme  oc中调用方法被称为发消息，消息转发就是当找不到接收者时会对消息转发给能响应的对象，转发的核心方法就是_objc_msgForward    正常情况下，我们运行时">
+  <meta name="description" content="996的生活持续了好久，期间项目组各种新项目，博客感觉要荒废～～～  把这段时间项目期间的大神分享拿来总结一下 ^_^  之前对于消息转发一直处于懵懂状态，因为平时用到的并不多，通过这个分享详细研究下～～～ 参考文章ibireme  oc中调用方法被称为发消息，消息转发就是当找不到接收者时会对消息转发给能响应的对象，转发的核心方法就是_objc_msgForward     正常情况下，我们运行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息转发">
 <meta property="og:url" content="huanghehg.github.io/2017/11/10/msgForward/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="996的生活持续了好久，期间项目组各种新项目，博客感觉要荒废～～～  把这段时间项目期间的大神分享拿来总结一下 ^_^  之前对于消息转发一直处于懵懂状态，因为平时用到的并不多，通过这个分享详细研究下～～～ 参考文章ibireme  oc中调用方法被称为发消息，消息转发就是当找不到接收者时会对消息转发给能响应的对象，转发的核心方法就是_objc_msgForward    正常情况下，我们运行时">
+<meta property="og:description" content="996的生活持续了好久，期间项目组各种新项目，博客感觉要荒废～～～  把这段时间项目期间的大神分享拿来总结一下 ^_^  之前对于消息转发一直处于懵懂状态，因为平时用到的并不多，通过这个分享详细研究下～～～ 参考文章ibireme  oc中调用方法被称为发消息，消息转发就是当找不到接收者时会对消息转发给能响应的对象，转发的核心方法就是_objc_msgForward     正常情况下，我们运行">
 <meta property="og:image" content="huanghehg.github.io/2017/11/10/images/msgForward/1.png">
 <meta property="og:image" content="huanghehg.github.io/2017/11/10/images/msgForward/2.png">
 <meta property="og:image" content="huanghehg.github.io/2017/11/10/images/msgForward/4.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="huanghehg.github.io/2017/11/10/images/msgForward/8.png">
 <meta property="og:image" content="huanghehg.github.io/2017/11/10/images/msgForward/9.png">
 <meta property="og:image" content="huanghehg.github.io/2017/11/10/images/msgForward/10.png">
-<meta property="og:updated_time" content="2017-11-11T07:29:13.000Z">
+<meta property="og:updated_time" content="2017-11-11T07:56:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="消息转发">
-<meta name="twitter:description" content="996的生活持续了好久，期间项目组各种新项目，博客感觉要荒废～～～  把这段时间项目期间的大神分享拿来总结一下 ^_^  之前对于消息转发一直处于懵懂状态，因为平时用到的并不多，通过这个分享详细研究下～～～ 参考文章ibireme  oc中调用方法被称为发消息，消息转发就是当找不到接收者时会对消息转发给能响应的对象，转发的核心方法就是_objc_msgForward    正常情况下，我们运行时">
+<meta name="twitter:description" content="996的生活持续了好久，期间项目组各种新项目，博客感觉要荒废～～～  把这段时间项目期间的大神分享拿来总结一下 ^_^  之前对于消息转发一直处于懵懂状态，因为平时用到的并不多，通过这个分享详细研究下～～～ 参考文章ibireme  oc中调用方法被称为发消息，消息转发就是当找不到接收者时会对消息转发给能响应的对象，转发的核心方法就是_objc_msgForward     正常情况下，我们运行">
 <meta name="twitter:image" content="huanghehg.github.io/2017/11/10/images/msgForward/1.png">
   
     <link rel="alternative" href="/atom.xml" title="黄河的个人空间" type="application/atom+xml">
@@ -193,6 +193,7 @@
 <p>参考文章<a href="https://blog.ibireme.com/2013/11/26/objective-c-messaging/" target="_blank" rel="external">ibireme</a></p>
 <hr>
 <p><code>oc</code>中调用方法被称为发消息，消息转发就是当找不到接收者时会对消息转发给能响应的对象，转发的核心方法就是<code>_objc_msgForward</code></p>
+
 <p><img src="../images/msgForward/1.png" width="300"></p>
 <p><img src="../images/msgForward/2.png" width="300"></p>
 <p><img src="../images/msgForward/4.png" width="300"></p>
