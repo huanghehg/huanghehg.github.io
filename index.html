@@ -259,6 +259,90 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Jenkins" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/09/14/Jenkins/" class="article-date">
+      <time datetime="2018-09-14T12:07:19.000Z" itemprop="datePublished">2018-09-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/14/Jenkins/">MAC 安装Jenkins</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p><a href="https://jenkins.io/doc/pipeline/tour/getting-started/" target="_blank" rel="external">官方文档</a></p>
+<p>参考：<br><a href="https://blog.csdn.net/liuxueli688/article/details/52483847" target="_blank" rel="external">jenkins 常用插件</a><br><a href="https://github.com/muyinchen/woker/blob/master/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAJenkins%2BGithub%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83.md" target="_blank" rel="external">jenkins 配置</a></p>
+<hr>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>1、使用<code>brew install jenkins</code></p>
+<p>启动: <code>brew services start jenkins</code></p>
+<p>停止: <code>brew services stop jenkins</code></p>
+<p>重启: <code>brew services restart jenkins</code></p>
+<ul>
+<li>改端口<ul>
+<li><code>which jenkins</code></li>
+<li>打开路径</li>
+</ul>
+</li>
+</ul>
+<div align="center"><br><img src="/images/jenkins/1.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/2.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/3.png" width="300" align="center"><br></div>
+
+
+<p>2、<a href="https://jenkins.io/" target="_blank" rel="external">官网</a>下包安装<strong><em>不推荐感觉不爽</em></strong></p>
+<p>启动: <code>sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist</code></p>
+<p>停止: <code>sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</code></p>
+<p>改端口: <code>sudo defaults write /Library/Preferences/org.jenkins-ci httpPort 1234</code></p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2018/09/14/Jenkins/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-msgForward" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -708,7 +792,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2017 huanghe
+                2016-2018 huanghe
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>

@@ -15,16 +15,35 @@
 
 
 
-<meta name="description" content="需求： 对比两个文件夹所有文件找出相同文件">
+<meta name="description" content="官方文档 参考：jenkins 常用插件jenkins 配置  安装1、使用brew install jenkins 启动: brew services start jenkins 停止: brew services stop jenkins 重启: brew services restart jenkins  改端口 which jenkins 打开路径           2、官网下包安装不推">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python脚本--文件夹文件对比">
-<meta property="og:url" content="huanghehg.github.io/2017/06/22/python脚本-文件夹文件对比/index.html">
+<meta property="og:title" content="MAC 安装Jenkins">
+<meta property="og:url" content="huanghehg.github.io/2018/09/14/Jenkins/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="需求： 对比两个文件夹所有文件找出相同文件">
-<meta property="og:updated_time" content="2017-11-11T08:22:15.000Z">
+<meta property="og:description" content="官方文档 参考：jenkins 常用插件jenkins 配置  安装1、使用brew install jenkins 启动: brew services start jenkins 停止: brew services stop jenkins 重启: brew services restart jenkins  改端口 which jenkins 打开路径           2、官网下包安装不推">
+<meta property="og:image" content="/images/jenkins/1.png">
+<meta property="og:image" content="/images/jenkins/2.png">
+<meta property="og:image" content="/images/jenkins/3.png">
+<meta property="og:image" content="/images/jenkins/5.png">
+<meta property="og:image" content="/images/jenkins/4.png">
+<meta property="og:image" content="/images/jenkins/6.png">
+<meta property="og:image" content="/images/jenkins/7.png">
+<meta property="og:image" content="/images/jenkins/8.png">
+<meta property="og:image" content="/images/jenkins/10.png">
+<meta property="og:image" content="/images/jenkins/9.png">
+<meta property="og:image" content="/images/jenkins/16.png">
+<meta property="og:image" content="/images/jenkins/17.png">
+<meta property="og:image" content="/images/jenkins/11.png">
+<meta property="og:image" content="/images/jenkins/12.png">
+<meta property="og:image" content="/images/jenkins/13.png">
+<meta property="og:image" content="/images/jenkins/14.png">
+<meta property="og:image" content="/images/jenkins/18.png">
+<meta property="og:image" content="/images/jenkins/19.png">
+<meta property="og:updated_time" content="2018-09-14T13:43:55.740Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python脚本--文件夹文件对比">
-<meta name="twitter:description" content="需求： 对比两个文件夹所有文件找出相同文件">
+<meta name="twitter:title" content="MAC 安装Jenkins">
+<meta name="twitter:description" content="官方文档 参考：jenkins 常用插件jenkins 配置  安装1、使用brew install jenkins 启动: brew services start jenkins 停止: brew services stop jenkins 重启: brew services restart jenkins  改端口 which jenkins 打开路径           2、官网下包安装不推">
+<meta name="twitter:image" content="/images/jenkins/1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +75,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>python脚本--文件夹文件对比 | 黄河的个人空间</title>
+<title>MAC 安装Jenkins | 黄河的个人空间</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -256,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-python脚本-文件夹文件对比" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Jenkins" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/06/22/python脚本-文件夹文件对比/" class="article-date">
-      <time datetime="2017-06-22T02:28:26.000Z" itemprop="datePublished">2017-06-22</time>
+      <a href="/2018/09/14/Jenkins/" class="article-date">
+      <time datetime="2018-09-14T12:07:19.000Z" itemprop="datePublished">2018-09-14</time>
 </a>
 
 
@@ -275,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      python脚本--文件夹文件对比
+      MAC 安装Jenkins
     </h1>
   
 
@@ -292,14 +311,86 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>需求： 对比两个文件夹所有文件找出相同文件</p>
+        <p><a href="https://jenkins.io/doc/pipeline/tour/getting-started/" target="_blank" rel="external">官方文档</a></p>
+<p>参考：<br><a href="https://blog.csdn.net/liuxueli688/article/details/52483847" target="_blank" rel="external">jenkins 常用插件</a><br><a href="https://github.com/muyinchen/woker/blob/master/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAJenkins%2BGithub%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83.md" target="_blank" rel="external">jenkins 配置</a></p>
+<hr>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>1、使用<code>brew install jenkins</code></p>
+<p>启动: <code>brew services start jenkins</code></p>
+<p>停止: <code>brew services stop jenkins</code></p>
+<p>重启: <code>brew services restart jenkins</code></p>
+<ul>
+<li>改端口<ul>
+<li><code>which jenkins</code></li>
+<li>打开路径</li>
+</ul>
+</li>
+</ul>
+<div align="center"><br><img src="/images/jenkins/1.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/2.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/3.png" width="300" align="center"><br></div>
+
+
+<p>2、<a href="https://jenkins.io/" target="_blank" rel="external">官网</a>下包安装<strong><em>不推荐感觉不爽</em></strong></p>
+<p>启动: <code>sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist</code></p>
+<p>停止: <code>sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</code></p>
+<p>改端口: <code>sudo defaults write /Library/Preferences/org.jenkins-ci httpPort 1234</code></p>
 <a id="more"></a>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>浏览器输入地址</p>
 <ol>
-<li>遍历两个文件夹，逐个对比文件</li>
-<li>相同的文件<code>copy</code>至新文件夹</li>
+<li>输入上面显示的路径下的密码</li>
+<li>默认插件</li>
+<li>创建<code>admin</code>账户</li>
+<li><code>Jenkins URL</code>配置为访问<code>jenkins</code>的地址就是上面在浏览器输入的地址，==不配可能会报反向代理配置出错的<code>warning</code>==</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python</div><div class="line">#-*- coding:utf-8 -*-</div><div class="line"></div><div class="line"># import filecmp</div><div class="line">import hashlib</div><div class="line">import os</div><div class="line">import shutil</div><div class="line"></div><div class="line"></div><div class="line">def getmd5(filename):</div><div class="line">	file_text = open(filename,&apos;rb&apos;).read()</div><div class="line">	m = hashlib.md5(file_text)</div><div class="line">	return m.hexdigest()</div><div class="line"></div><div class="line">def get_allfiles(filepath):</div><div class="line">	filepaths = []</div><div class="line">	for parent,dirs,filenames in os.walk(filepath):</div><div class="line">		for filename in filenames:</div><div class="line">			if filename.startswith(&apos;.&apos;):</div><div class="line">				pass</div><div class="line">			file = os.path.join(parent, filename)</div><div class="line">			filepaths.append(file)</div><div class="line">	return filepaths</div><div class="line"></div><div class="line">def delete_samefile(filepath):</div><div class="line">	delete_files = []</div><div class="line">	extentfile = []</div><div class="line">	md5files = &#123;&#125;</div><div class="line">	allfilePath = get_allfiles(filepath)</div><div class="line">	for file in allfilePath:		</div><div class="line">		filemd5 = getmd5(file)</div><div class="line">		if filemd5 in md5files.keys():</div><div class="line">		   # 将删除的文件名与保留的文件名一起打印出来</div><div class="line">			delete_files.append(file)</div><div class="line">			filenameor = md5files[filemd5]</div><div class="line">			delete_files.append(filenameor)</div><div class="line">			os.remove(file)</div><div class="line">		else :</div><div class="line">			md5files[filemd5] = file</div><div class="line">			extentfile.append(file)</div><div class="line"></div><div class="line">	print(delete_files)</div><div class="line">	print(&apos;\n&apos;)</div><div class="line">	return extentfile</div><div class="line"></div><div class="line">def hh_compare_file(filedir1,filedir2):</div><div class="line"></div><div class="line">	if os.path.exists(&apos;./allhavefile&apos;):</div><div class="line">		shutil.rmtree(&apos;./allhavefile&apos;)</div><div class="line"></div><div class="line">	os.mkdir(&apos;allhavefile&apos;)</div><div class="line"></div><div class="line">	# 删除当前路径下重复的文件</div><div class="line">	fileresult1 = delete_samefile(filedir1)</div><div class="line"></div><div class="line">	fileresult2 = delete_samefile(filedir2)</div><div class="line"></div><div class="line"></div><div class="line">	for file in fileresult1:</div><div class="line">		if os.path.isfile(file):</div><div class="line">			for file2 in fileresult2:</div><div class="line">				if os.path.isfile(file2):</div><div class="line">					# 大小不同说明不一样</div><div class="line">					if os.stat(file2).st_size != os.stat(file).st_size :</div><div class="line">						continue</div><div class="line"></div><div class="line">					md5file1 = getmd5(file)</div><div class="line">					md5file2 = getmd5(file2)</div><div class="line">					if md5file1 == md5file2:</div><div class="line">						shutil.copy(file,&apos;./allhavefile&apos;)</div><div class="line">						shutil.copy(file2,&apos;./allhavefile&apos;)</div><div class="line">						os.remove(file)</div><div class="line">						os.remove(file2)</div><div class="line">						break</div><div class="line"></div><div class="line"></div><div class="line">print (&apos;# 1、删除文件路径下重复文件\n # 2、找出两个文件夹相同文件&apos;)</div><div class="line"></div><div class="line">str = input()</div><div class="line"></div><div class="line">if str == &apos;1&apos;:</div><div class="line">	print (&quot;路径1:\n&quot;)</div><div class="line">	filedir = input()</div><div class="line"></div><div class="line">	delete_samefile(filedir)</div><div class="line"></div><div class="line">elif str == &apos;2&apos;:</div><div class="line">	print (&quot;路径1:\n&quot;)</div><div class="line">	filedir1 = input()</div><div class="line"></div><div class="line">	print (&quot;路径2:\n&quot;)</div><div class="line">	filedir2 = input()</div><div class="line"></div><div class="line">	hh_compare_file(filedir1,filedir2)</div></pre></td></tr></table></figure>
-<p>继续学习优化算法</p>
+<div align="center"><br><img src="/images/jenkins/5.png" width="300" align="center"><br></div>
+
+<p>最终效果:</p>
+<div align="center"><br><img src="/images/jenkins/4.png" width="300" align="center"><br></div>
+
+<p>到这一步基本算是简单配置完成了</p>
+<hr>
+<h3 id="简单任务构建"><a href="#简单任务构建" class="headerlink" title="简单任务构建"></a>简单任务构建</h3><div align="center"><br><img src="/images/jenkins/6.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/7.png" width="300" align="center"><br></div>
+
+<p>正常一个简单的构建流程是</p>
+<ol>
+<li>拉代码</li>
+<li>跑脚本</li>
+<li>出结果</li>
+</ol>
+<div align="center"><br><img src="/images/jenkins/8.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/10.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/9.png" width="300" align="center"><br></div>
+
+<p>简单写一个小输出</p>
+<div align="center"><br><img src="/images/jenkins/16.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/17.png" width="300" align="center"><br></div>
+
+
+<h3 id="多节点配置"><a href="#多节点配置" class="headerlink" title="多节点配置"></a>多节点配置</h3><p>如果使用的项目很多就可以考虑多节点配置，只需要添加节点服务器，节点服务器不需要安装<code>jenkins</code></p>
+<div align="center"><br><img src="/images/jenkins/11.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/12.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/13.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/14.png" width="300" align="center"><br></div>
+
+<p>多节点配置后可以在任务里配置指定节点</p>
+<div align="center"><br><img src="/images/jenkins/18.png" width="300" align="center"><br></div>
+
+<div align="center"><br><img src="/images/jenkins/19.png" width="300" align="center"><br></div>
+
+
+<hr>
+<p><code>jenkins</code>的基础配置很简单具体复杂的就需要依据项目而定</p>
+<p><a href="https://blog.csdn.net/liuxueli688/article/details/52483847" target="_blank" rel="external">jenkins 常用插件</a></p>
 
       
     </div>
@@ -308,13 +399,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/06/22/python脚本-文件夹文件对比/">python脚本--文件夹文件对比</a></p>
+        <p><span>本文标题:</span><a href="/2018/09/14/Jenkins/">MAC 安装Jenkins</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">huanghe</a></p>
-        <p><span>发布时间:</span>2017-06-22, 10:28:26</p>
-        <p><span>最后更新:</span>2017-11-11, 16:22:15</p>
+        <p><span>发布时间:</span>2018-09-14, 20:07:19</p>
+        <p><span>最后更新:</span>2018-09-14, 21:43:55</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/22/python脚本-文件夹文件对比/" title="python脚本--文件夹文件对比">huanghehg.github.io/2017/06/22/python脚本-文件夹文件对比/</a>
-            <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2017/06/22/python脚本-文件夹文件对比/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/14/Jenkins/" title="MAC 安装Jenkins">huanghehg.github.io/2018/09/14/Jenkins/</a>
+            <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2018/09/14/Jenkins/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -326,16 +417,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/11/09/Cocoapod/">
-                    Cocoapods 私有库
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/06/21/python脚本-压缩文件夹/">
-                    python脚本-- 压缩文件夹
+                <a href="/2017/11/10/msgForward/">
+                    消息转发
                 </a>
             </div>
         
@@ -347,7 +432,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单任务构建"><span class="toc-number">3.</span> <span class="toc-text">简单任务构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多节点配置"><span class="toc-number">4.</span> <span class="toc-text">多节点配置</span></a></li></ol>
         
     </div>
     <style>
@@ -383,7 +468,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"python脚本--文件夹文件对比　| 黄河的个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"MAC 安装Jenkins　| 黄河的个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -403,15 +488,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/11/09/Cocoapod/" title="上一篇: Cocoapods 私有库">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/06/21/python脚本-压缩文件夹/" title="下一篇: python脚本-- 压缩文件夹">
+            <a href="/2017/11/10/msgForward/" title="下一篇: 消息转发">
                 <i class="fa fa-angle-right"></i>
             </a>
         
