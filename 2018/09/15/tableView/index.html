@@ -15,18 +15,24 @@
 
 
 
-<meta name="description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51330824 参考文章http://www.cocoachina.com/ios/20150228/11206.htmlhttp://blog.csdn.net/yohunl/article/details/48471489">
+<meta name="description" content="由于业务特殊大部分业务需求都是配置累页面同一个页面cell种类特别多所以同事封装了一套框架来简化开发，学习了一下，然后自己总结改动了一个简化版，改动了section和cellModel以及headerView的实现方式 github地址">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocoapods 私有库1">
-<meta property="og:url" content="huanghehg.github.io/2017/11/09/Cocoapods管理私有库1/index.html">
+<meta property="og:title" content="iOS页面框架">
+<meta property="og:url" content="huanghehg.github.io/2018/09/15/tableView/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51330824 参考文章http://www.cocoachina.com/ios/20150228/11206.htmlhttp://blog.csdn.net/yohunl/article/details/48471489">
-<meta property="og:image" content="http://img.blog.csdn.net/20160506131053930">
-<meta property="og:updated_time" content="2017-11-11T08:21:58.000Z">
+<meta property="og:description" content="由于业务特殊大部分业务需求都是配置累页面同一个页面cell种类特别多所以同事封装了一套框架来简化开发，学习了一下，然后自己总结改动了一个简化版，改动了section和cellModel以及headerView的实现方式 github地址">
+<meta property="og:image" content="/images/tableView/1.png">
+<meta property="og:image" content="/images/tableView/2.png">
+<meta property="og:image" content="/images/tableView/3.png">
+<meta property="og:image" content="/images/tableView/4.png">
+<meta property="og:image" content="/images/tableView/5.png">
+<meta property="og:image" content="/images/tableView/6.png">
+<meta property="og:image" content="/images/tableView/7.png">
+<meta property="og:updated_time" content="2018-09-15T09:55:03.106Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocoapods 私有库1">
-<meta name="twitter:description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51330824 参考文章http://www.cocoachina.com/ios/20150228/11206.htmlhttp://blog.csdn.net/yohunl/article/details/48471489">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160506131053930">
+<meta name="twitter:title" content="iOS页面框架">
+<meta name="twitter:description" content="由于业务特殊大部分业务需求都是配置累页面同一个页面cell种类特别多所以同事封装了一套框架来简化开发，学习了一下，然后自己总结改动了一个简化版，改动了section和cellModel以及headerView的实现方式 github地址">
+<meta name="twitter:image" content="/images/tableView/1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +64,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Cocoapods 私有库1 | 黄河的个人空间</title>
+<title>iOS页面框架 | 黄河的个人空间</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -254,11 +260,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Cocoapods管理私有库1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-tableView" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/11/09/Cocoapods管理私有库1/" class="article-date">
-      <time datetime="2017-11-09T07:07:31.000Z" itemprop="datePublished">2017-11-09</time>
+      <a href="/2018/09/15/tableView/" class="article-date">
+      <time datetime="2018-09-15T09:35:07.000Z" itemprop="datePublished">2018-09-15</time>
 </a>
 
 
@@ -273,7 +279,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Cocoapods 私有库1
+      iOS页面框架
     </h1>
   
 
@@ -290,23 +296,69 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>从<code>CSDN</code>移动到个人博客</p>
-<p>原文地址<a href="http://blog.csdn.net/u014452002/article/details/51330824" target="_blank" rel="external">http://blog.csdn.net/u014452002/article/details/51330824</a></p>
-<p>参考文章<br><a href="http://www.cocoachina.com/ios/20150228/11206.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150228/11206.html</a><br><a href="http://blog.csdn.net/yohunl/article/details/48471489" target="_blank" rel="external">http://blog.csdn.net/yohunl/article/details/48471489</a></p>
+        <p>由于业务特殊大部分业务需求都是配置累页面同一个页面<code>cell</code>种类特别多所以同事封装了一套框架来简化开发，学习了一下，然后自己总结改动了一个简化版，改动了<code>section</code>和<code>cellModel</code>以及<code>headerView</code>的实现方式</p>
+<p><a href="https://github.com/huanghehg/HHTableViewFrameWork" target="_blank" rel="external">github地址</a></p>
 <a id="more"></a>
-<p>准备工作</p>
-<p><em>1、有自己的git仓库</em><br><em>2、需要管理的私有库</em></p>
 <hr>
-<p>在git服务器上新建一个私有库<code>MyPrivateCocoaRepo</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$pod repo add MyPrivateCocoaRepo https://git.oschina.net/huanghehg/MyPrivateCocoaRepo.git</div><div class="line">Cloning spec repo `MyPrivateCocoaRepo` from `https://git.oschina.net/huanghehg/MyPrivateCocoaRepo.git`</div></pre></td></tr></table></figure></p>
-<p>将自己的需要管理的库克隆到本地,<code>cd</code>到目录下,打上<code>tag</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$git clone https://git.oschina.net/huanghehg/MyTool.git</div><div class="line">$cd ~/MyTool</div><div class="line">$git tag 0.0.6</div><div class="line">$git push --tags</div></pre></td></tr></table></figure></p>
-<p>在该目录下创建<code>spec</code>文件,<code>vim</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$pod spec create MyTool https://git.oschina.net/huanghehg/MyTool.git</div><div class="line">$vim MyTool.podspec</div></pre></td></tr></table></figure></p>
-<p>删除注释，不删除也可以但是看起来不方便<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new do |s|</div><div class="line">  s.name             = &quot;MyTool&quot;    #名称</div><div class="line">  s.version          = &quot;0.1.0&quot;             #版本号</div><div class="line">  s.summary          = &quot;Just Testing. MyTool&quot;     #简短介绍，下面是详细介绍</div><div class="line">  s.description      = &lt;&lt;-DESC</div><div class="line">                       Testing Private Podspec.</div><div class="line">                       *it is just a test file</div><div class="line">                       DESC</div><div class="line">  s.homepage         = &quot;https://git.oschina.net/huanghehg/MyTool.git&quot;                        #主页,这里要填写可以访问到的地址，不然验证不通过</div><div class="line">  s.license          = &apos;MIT&apos;              #开源协议</div><div class="line">  s.author           = &#123; &quot;huanghehg&quot; =&gt; &quot;huanghehg@163.com&quot; &#125;            #作者信息</div><div class="line">  s.source           = &#123; :git =&gt; &quot;https://git.oschina.net/huanghehg/MyTool.git&quot;, :tag =&gt; &quot;0.1.0&quot; &#125;      #项目地址，这里不支持ssh的地址，验证不通过，只支持HTTP和HTTPS，最好使用HTTPS</div><div class="line">  s.platform     = :ios, &apos;7.0&apos;            #支持的平台及版本</div><div class="line">  s.requires_arc = true                   #是否使用ARC，如果指定具体文件，则具体的问题使用ARC</div><div class="line"></div><div class="line">  s.source_files = &apos;Pod/Classes/**/*&apos;     #代码源文件地址，**/*表示Classes目录及其子目录下所有文件，如果有多个目录下则用逗号分开，如果需要在项目中分组显示，这里也要做相应的设置</div><div class="line">  s.resource_bundles = &#123;</div><div class="line">    &apos;PodTestLibrary&apos; =&gt; [&apos;Pod/Assets/*.png&apos;]</div><div class="line">  &#125;                                       #资源文件地址</div><div class="line"></div><div class="line">  s.public_header_files = &apos;Pod/Classes/**/*.h&apos;   #公开头文件地址</div><div class="line">  s.frameworks = &apos;UIKit&apos;                  #所需的framework，多个用逗号隔开</div><div class="line">  s.dependency &apos;AFNetworking&apos;, &apos;~&gt; 2.3&apos;   #依赖关系，该项目所依赖的其他库，如果有多个需要填写多个s.dependency</div><div class="line">end&lt;/twitter_username&gt;</div></pre></td></tr></table></figure></p>
-<p>配置完成保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pod lib lint (验证，不能出现error 如果出现warn 可以在后面跟上--allow-warnings,但不能确保你的类正确)</div><div class="line">MyTool passed validation.</div></pre></td></tr></table></figure></p>
-<p>然后就可以将<code>spec</code>提交到刚开始的<code>repo</code>里了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo push MyPrivateCocoaRepo MyTool.podspec (--allow-warnings)</div></pre></td></tr></table></figure></p>
-<p>此时<code>pod search MyTool</code><br><img src="http://img.blog.csdn.net/20160506131053930" alt="这里写图片描述"><br>就可以在Podfile中使用了</p>
+<p>正常我们在开发中用<code>tableView</code>时，每一个<code>vc</code>都会有一个<code>tableView</code>且都需要实现<code>dataSource、delegate</code></p>
+<p>正常数据到显示要通过以下方式传递：</p>
+<div align="center"><br><img src="/images/tableView/1.png" width="300"><br></div>
+
+<ol>
+<li>数据传递到<code>vc</code>（或者直接在<code>vc</code>请求）</li>
+<li><code>vc</code>实现<code>tableView</code>的<code>delegate</code></li>
+<li><code>cellForRowAtIndexPath</code>方法找出对应<code>data</code>传递到<code>cell</code></li>
+<li><code>cell</code>填充数据展示</li>
+<li>一般我们<code>cell</code>会持有<code>data</code></li>
+</ol>
+<p>然而如果<code>cell</code>样式过多:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&#123;&quot;type&quot;:&quot;1&quot;,&quot;value&quot;:[...]&#125;,&#123;&quot;type&quot;:&quot;2&quot;,&quot;value&quot;:&quot;&quot;&#125;,&#123;&quot;type&quot;:&quot;3&quot;,&quot;value&quot;:&quot;&quot;&#125;]</div></pre></td></tr></table></figure></p>
+<div align="center"><br><img src="/images/tableView/2.png" width="300"><br></div>
+
+<p>然而如果<code>data</code>结构和<code>cell</code>样式都过多:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[group1, 数据结构1]</div><div class="line">[group2，数据结构2]</div><div class="line">[group3，数据结构3]</div></pre></td></tr></table></figure></p>
+<div align="center"><br><img src="/images/tableView/3.png" width="300"><br></div>
+
+<p>问题：</p>
+<ol>
+<li>每一个<code>vc</code>都实现<code>tableView</code>代理的代码重复</li>
+<li>界面<code>cell</code>样式和数据结构多的时候会导致<code>cellForRowAtIndexPath</code>里很多胶水代码</li>
+<li><code>cell</code>持有<code>model</code>,不同业务模块的相同样式<code>cell</code>会出现业务<code>model</code>依赖</li>
+</ol>
+<p>解决方案：</p>
+<ol>
+<li>提供<code>manager</code>类来管理代理<code>HHTableViewManager</code>,所有<code>vc</code>只需要创建一个<code>manager</code>对象</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (HHTableViewManager *)manager &#123;</div><div class="line">    if (!_manager) &#123;</div><div class="line">        _manager = [[HHTableViewManager alloc] initWithTableView:self.tableView];</div><div class="line">    &#125;</div><div class="line">    return _manager;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>为每一个<code>cell</code>提供与之对应的<code>cellModel</code>就相当于<code>vc</code>的<code>viewModel</code></li>
+</ol>
+<ul>
+<li><code>cellModel</code>与<code>cell</code> 绑定（<code>HHCellViewModelProxy</code>），同时暴露<code>cell</code>可操作的属性及交互给调用方,<code>cell</code>实现协议(<code>HHCellViewProxy</code>),来实现数据传递</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@protocol HHCellViewModelProxy &lt;NSObject&gt;</div><div class="line"></div><div class="line">@required</div><div class="line"></div><div class="line">/**</div><div class="line"> 返回当前viewModel 对应的类名</div><div class="line"></div><div class="line"> @return string</div><div class="line"> */</div><div class="line">- (NSString *)bindClassString;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">@protocol HHCellViewProxy &lt;NSObject&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> cell 初始化</div><div class="line"> */</div><div class="line">- (void)cellForInitalized;</div><div class="line">/**</div><div class="line"> cell 填充数据</div><div class="line"></div><div class="line"> @param 对应的ViewModel Cell 可以持有ViewModel</div><div class="line"> */</div><div class="line">- (void)configCellWithViewModel:(id &lt;HHCellViewModelProxy&gt;)viewModel;</div><div class="line"></div><div class="line">/**</div><div class="line"> cell 高度</div><div class="line"></div><div class="line"> @param viewModel</div><div class="line"> @return 高度</div><div class="line"> */</div><div class="line">+ (CGFloat)heightForCellWithViewModel:(id &lt;HHCellViewModelProxy&gt;)viewModel;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<ol>
+<li>提供<code>section</code>来管理<code>cellModel</code>(<code>HHSectionProxy</code>)的增删（可以把它当成一个<code>Array</code>）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">@protocol HHSectionProxy &lt;NSObject&gt;</div><div class="line"></div><div class="line">@required</div><div class="line">@property (nonatomic, strong, readonly)NSArray&lt;HHCellViewModelProxy&gt; *rows;</div><div class="line"></div><div class="line">@property (nonatomic, strong)id&lt;HHSectionViewModelProxy&gt; bindHeaderViewModel;</div><div class="line">@property (nonatomic, strong)id&lt;HHSectionViewModelProxy&gt; bindFootererViewModel;</div><div class="line"></div><div class="line">- (void)addRow:(id&lt;HHCellViewModelProxy&gt;)row;</div><div class="line">- (void)addRows:(NSArray&lt;HHCellViewModelProxy&gt; *)rows;</div><div class="line">- (void)insertRow:(id&lt;HHCellViewModelProxy&gt;)row atIndex:(NSUInteger)index;</div><div class="line"></div><div class="line">- (void)insertRow:(id&lt;HHCellViewModelProxy&gt;)row beforeRow:(id&lt;HHCellViewModelProxy&gt;)baseRow;</div><div class="line">- (void)insertRow:(id&lt;HHCellViewModelProxy&gt;)row behindRow:(id&lt;HHCellViewModelProxy&gt;)baseRow;</div><div class="line"></div><div class="line">- (void)removeRow:(id&lt;HHCellViewModelProxy&gt;)row;</div><div class="line">- (void)removeRows:(NSArray&lt;HHCellViewModelProxy&gt; *)rows;</div><div class="line">- (void)removeRowAtIndex:(NSUInteger)index;</div><div class="line">- (void)removeAllRows;</div><div class="line"></div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<div align="center"><br><img src="/images/tableView/4.png" width="300"><br></div>
+
+
+<ol>
+<li><code>manager</code>管理<code>section</code>的增删</li>
+</ol>
+<div align="center"><br><img src="/images/tableView/5.png" width="300"><br></div>
+
+
+<p>最终：<code>manager</code>会在<code>cellForRow</code>里找到<code>section</code>找到<code>cellModell</code>找到<code>cell</code></p>
+<div align="center"><br><img src="/images/tableView/6.png" width="600"><br></div>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath &#123;</div><div class="line">    Class cellClass = [self getCurrentRowViewClassWithIndexPath:indexPath];</div><div class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellClass)];</div><div class="line">    if (!cell) &#123;</div><div class="line">        cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(cellClass)];</div><div class="line">        if ([cell respondsToSelector:@selector(cellForInitalized)]) &#123;</div><div class="line">            [cell performSelector:@selector(cellForInitalized)];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    if ([cell respondsToSelector:@selector(configCellWithViewModel:)]) &#123;</div><div class="line">        [(id &lt;HHCellViewProxy&gt;)cell configCellWithViewModel:[self rowAtIndexPath:indexPath]];</div><div class="line">    &#125;</div><div class="line">    return cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
-<p>以上是添加到私有库的方法,在项目中使用时需要在<code>Podfile</code>中添加刚刚新建的私有<code>repo</code>地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">source &apos;https://git.oschina.net/huanghehg/MyPrivateCocoaRepo.git&apos;</div><div class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</div></pre></td></tr></table></figure></p>
-<p>添加到<code>public</code>的方法后期会在总结</p>
+<p>最后我们创建页面的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">HHBaseSection *section = [[HHBaseSection alloc] init];</div><div class="line">    </div><div class="line">for (NSDictionary *dic in array) &#123;</div><div class="line">    HHListViewModel *viewModel = [[HHListViewModel alloc] init];</div><div class="line">    viewModel.title = dic[@&quot;title&quot;];</div><div class="line">    viewModel.detail = dic[@&quot;detail&quot;];</div><div class="line">    viewModel.height = [dic[@&quot;height&quot;] floatValue];</div><div class="line">    [section addRow:viewModel];</div><div class="line">&#125;</div><div class="line">[self.manager addSection:section];</div><div class="line"></div><div class="line">[self.manager reloadData];</div></pre></td></tr></table></figure></p>
+<p><strong><code>cell</code> 和<code>cellModel</code>是不依赖业务的，我们可以把他们放在统一的一个组件库里</strong></p>
+<div align="center"><br><img src="/images/tableView/7.png" width="300"><br></div>
+
 
       
     </div>
@@ -315,13 +367,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/11/09/Cocoapods管理私有库1/">Cocoapods 私有库1</a></p>
+        <p><span>本文标题:</span><a href="/2018/09/15/tableView/">iOS页面框架</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">huanghe</a></p>
-        <p><span>发布时间:</span>2017-11-09, 15:07:31</p>
-        <p><span>最后更新:</span>2017-11-11, 16:21:58</p>
+        <p><span>发布时间:</span>2018-09-15, 17:35:07</p>
+        <p><span>最后更新:</span>2018-09-15, 17:55:03</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/11/09/Cocoapods管理私有库1/" title="Cocoapods 私有库1">huanghehg.github.io/2017/11/09/Cocoapods管理私有库1/</a>
-            <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2017/11/09/Cocoapods管理私有库1/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/15/tableView/" title="iOS页面框架">huanghehg.github.io/2018/09/15/tableView/</a>
+            <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2018/09/15/tableView/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -333,16 +385,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/11/09/Cocoapods基础/">
-                    Cocoapods 基础
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/11/09/Cocoapod/">
-                    Cocoapods 私有库
+                <a href="/2018/09/14/Jenkins/">
+                    MAC 安装Jenkins
                 </a>
             </div>
         
@@ -390,7 +436,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Cocoapods 私有库1　| 黄河的个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"iOS页面框架　| 黄河的个人空间　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -410,15 +456,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/11/09/Cocoapods基础/" title="上一篇: Cocoapods 基础">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/11/09/Cocoapod/" title="下一篇: Cocoapods 私有库">
+            <a href="/2018/09/14/Jenkins/" title="下一篇: MAC 安装Jenkins">
                 <i class="fa fa-angle-right"></i>
             </a>
         
