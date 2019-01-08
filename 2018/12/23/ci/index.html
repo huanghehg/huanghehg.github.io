@@ -15,13 +15,13 @@
 
 
 
-<meta name="description" content="参考文章： 持续集成是什么？  CI（Continuous integration） 持续化集成，持续集成是什么？请参考文章持续集成是什么？  就是定时将代码提交然后走一系列验证最终保证代码健壮的思路">
+<meta name="description" content="参考文章： 持续集成是什么？gitlab push代码通过webhooks自动触发jenkins构建设置 CI（Continuous integration） 持续化集成，持续集成是什么？请参考文章持续集成是什么？  就是定时将代码提交然后走一系列验证最终保证代码健壮的思路">
 <meta name="keywords" content="gitlab,jenkins,ios,ci">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于gitlab和jenkins搭建CI">
 <meta property="og:url" content="huanghehg.github.io/2018/12/23/ci/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="参考文章： 持续集成是什么？  CI（Continuous integration） 持续化集成，持续集成是什么？请参考文章持续集成是什么？  就是定时将代码提交然后走一系列验证最终保证代码健壮的思路">
+<meta property="og:description" content="参考文章： 持续集成是什么？gitlab push代码通过webhooks自动触发jenkins构建设置 CI（Continuous integration） 持续化集成，持续集成是什么？请参考文章持续集成是什么？  就是定时将代码提交然后走一系列验证最终保证代码健壮的思路">
 <meta property="og:image" content="/images/ci/1.png">
 <meta property="og:image" content="/images/ci/gitlib_ci_config.png">
 <meta property="og:image" content="/images/ci/2.png">
@@ -32,10 +32,10 @@
 <meta property="og:image" content="/images/ci/7.png">
 <meta property="og:image" content="/images/ci/8.png">
 <meta property="og:image" content="/images/ci/9.png">
-<meta property="og:updated_time" content="2019-01-08T09:30:51.219Z">
+<meta property="og:updated_time" content="2019-01-08T09:58:29.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于gitlab和jenkins搭建CI">
-<meta name="twitter:description" content="参考文章： 持续集成是什么？  CI（Continuous integration） 持续化集成，持续集成是什么？请参考文章持续集成是什么？  就是定时将代码提交然后走一系列验证最终保证代码健壮的思路">
+<meta name="twitter:description" content="参考文章： 持续集成是什么？gitlab push代码通过webhooks自动触发jenkins构建设置 CI（Continuous integration） 持续化集成，持续集成是什么？请参考文章持续集成是什么？  就是定时将代码提交然后走一系列验证最终保证代码健壮的思路">
 <meta name="twitter:image" content="/images/ci/1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -301,8 +301,7 @@
       
           
         <p>参考文章：</p>
-<p><a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="external">持续集成是什么？
-</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="external">持续集成是什么？</a><br><a href="https://blog.csdn.net/guanshulixiao/article/details/76174731" target="_blank" rel="external">gitlab push代码通过webhooks自动触发jenkins构建设置</a></p>
 <p><code>CI（Continuous integration）</code> 持续化集成，持续集成是什么？请参考文章<a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="external">持续集成是什么？
 </a></p>
 <p>就是定时将代码提交然后走一系列验证最终保证代码健壮的思路</p>
@@ -481,6 +480,7 @@
 <p><strong>我们可以通过<code>git</code> 服务器提供的<code>webhook</code>来实现自动触发：</strong></p>
 <p><div align="center"><br><img src="/images/ci/8.png" float="left"><br><img src="/images/ci/9.png" float="right"><br></div></p>
 <hr>
+<p>目前我们使用<code>gitlab</code>来做<code>CI</code>,<code>jenkins</code>用来打包使用，具体<code>jenkins</code>的配置可以详细参照<a href="https://jenkins.io/user-handbook.pdf" target="_blank" rel="external">jenkins用户手册</a></p>
 
       
     </div>
@@ -492,7 +492,7 @@
         <p><span>本文标题:</span><a href="/2018/12/23/ci/">基于gitlab和jenkins搭建CI</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">huanghe</a></p>
         <p><span>发布时间:</span>2018-12-23, 19:53:00</p>
-        <p><span>最后更新:</span>2019-01-08, 17:30:51</p>
+        <p><span>最后更新:</span>2019-01-08, 17:58:29</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/12/23/ci/" title="基于gitlab和jenkins搭建CI">huanghehg.github.io/2018/12/23/ci/</a>
             <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2018/12/23/ci/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
