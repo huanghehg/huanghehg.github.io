@@ -15,12 +15,12 @@
 
 
 
-<meta name="description" content="官方文档 参考：jenkins 常用插件jenkins 配置  安装1、使用brew install jenkins 启动: brew services start jenkins 停止: brew services stop jenkins 重启: brew services restart jenkins  改端口 which jenkins 打开路径           2、官网下包安装不推">
+<meta name="description" content="官方文档 参考：jenkins 常用插件jenkins 配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MAC 安装Jenkins">
 <meta property="og:url" content="huanghehg.github.io/2018/09/14/Jenkins/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="官方文档 参考：jenkins 常用插件jenkins 配置  安装1、使用brew install jenkins 启动: brew services start jenkins 停止: brew services stop jenkins 重启: brew services restart jenkins  改端口 which jenkins 打开路径           2、官网下包安装不推">
+<meta property="og:description" content="官方文档 参考：jenkins 常用插件jenkins 配置">
 <meta property="og:image" content="/images/jenkins/1.png">
 <meta property="og:image" content="/images/jenkins/2.png">
 <meta property="og:image" content="/images/jenkins/3.png">
@@ -39,10 +39,10 @@
 <meta property="og:image" content="/images/jenkins/14.png">
 <meta property="og:image" content="/images/jenkins/18.png">
 <meta property="og:image" content="/images/jenkins/19.png">
-<meta property="og:updated_time" content="2018-09-14T13:43:55.740Z">
+<meta property="og:updated_time" content="2018-12-17T09:41:19.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MAC 安装Jenkins">
-<meta name="twitter:description" content="官方文档 参考：jenkins 常用插件jenkins 配置  安装1、使用brew install jenkins 启动: brew services start jenkins 停止: brew services stop jenkins 重启: brew services restart jenkins  改端口 which jenkins 打开路径           2、官网下包安装不推">
+<meta name="twitter:description" content="官方文档 参考：jenkins 常用插件jenkins 配置">
 <meta name="twitter:image" content="/images/jenkins/1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -178,10 +178,6 @@
                         
                             <li><a href="/archives/">所有文章</a></li>
                         
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
                         </ul>
                     </nav>
                     <nav class="header-nav">
@@ -198,7 +194,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
                     </div>
                 </section>
                 
@@ -207,11 +203,15 @@
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                      <a class="main-nav-link switch-friends-link" href="https://onevcat.com/#blog">onevcat</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                      <a class="main-nav-link switch-friends-link" href="https://limboy.me/">limboy</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                      <a class="main-nav-link switch-friends-link" href="http://blog.cnbang.net/">bang</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://neyoufan.github.io/">wangyi</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://triplecc.github.io/">qingmu</a>
                     
                     </div>
                 </section>
@@ -221,7 +221,7 @@
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">专注于前端</div>
+                    <div id="js-aboutme">nothing</div>
                 </section>
                 
             </div>
@@ -250,10 +250,6 @@
                     <li><a href="/">主页</a></li>
                 
                     <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
                 
                 <div class="clearfix"></div>
                 </ul>
@@ -309,6 +305,7 @@
           
         <p><a href="https://jenkins.io/doc/pipeline/tour/getting-started/" target="_blank" rel="external">官方文档</a></p>
 <p>参考：<br><a href="https://blog.csdn.net/liuxueli688/article/details/52483847" target="_blank" rel="external">jenkins 常用插件</a><br><a href="https://github.com/muyinchen/woker/blob/master/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAJenkins%2BGithub%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83.md" target="_blank" rel="external">jenkins 配置</a></p>
+<a id="more"></a>
 <hr>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>1、使用<code>brew install jenkins</code></p>
 <p>启动: <code>brew services start jenkins</code></p>
@@ -332,7 +329,6 @@
 <p>启动: <code>sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist</code></p>
 <p>停止: <code>sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</code></p>
 <p>改端口: <code>sudo defaults write /Library/Preferences/org.jenkins-ci httpPort 1234</code></p>
-<a id="more"></a>
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>浏览器输入地址</p>
 <ol>
 <li>输入上面显示的路径下的密码</li>
@@ -398,7 +394,7 @@
         <p><span>本文标题:</span><a href="/2018/09/14/Jenkins/">MAC 安装Jenkins</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">huanghe</a></p>
         <p><span>发布时间:</span>2018-09-14, 20:07:19</p>
-        <p><span>最后更新:</span>2018-09-14, 21:43:55</p>
+        <p><span>最后更新:</span>2018-12-17, 17:41:19</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/09/14/Jenkins/" title="MAC 安装Jenkins">huanghehg.github.io/2018/09/14/Jenkins/</a>
             <span class="copy-path" data-clipboard-text="原文: huanghehg.github.io/2018/09/14/Jenkins/　　作者: huanghe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -504,7 +500,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/tableView/">iOS页面框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/14/Jenkins/">MAC 安装Jenkins</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/10/msgForward/">消息转发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapods基础/">Cocoapods 基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapods管理私有库1/">Cocoapods 私有库1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapod/">Cocoapods 私有库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/22/python脚本-文件夹文件对比/">python脚本--文件夹文件对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/python脚本-压缩文件夹/">python脚本-- 压缩文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/图文混排/">图文混排初探</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/23/ci/">基于gitlab和jenkins搭建CI</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/tableView/">iOS页面框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/14/Jenkins/">MAC 安装Jenkins</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/10/msgForward/">消息转发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapods基础/">Cocoapods 基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapods管理私有库1/">Cocoapods 私有库1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/Cocoapod/">Cocoapods 私有库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/22/python脚本-文件夹文件对比/">python脚本--文件夹文件对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/python脚本-压缩文件夹/">python脚本-- 压缩文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/图文混排/">图文混排初探</a></li></ul>
 
 
 
@@ -518,7 +514,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2018 huanghe
+                2016-2019 huanghe
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
