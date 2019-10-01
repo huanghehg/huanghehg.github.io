@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ios,Xcode,import," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考文章：iOS里的导入头文件 在项目二进制化的过程中，打包framework经常出现头文件报错，主要缘于项目组件化完成后，因为文件的移动导致头文件引用方式不对，特此总结下import原理">
+<meta name="keywords" content="ios,Xcode,import">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC import探究">
+<meta property="og:url" content="huanghehg.github.io/2019/09/28/import/index.html">
+<meta property="og:site_name" content="黄河的个人空间">
+<meta property="og:description" content="参考文章：iOS里的导入头文件 在项目二进制化的过程中，打包framework经常出现头文件报错，主要缘于项目组件化完成后，因为文件的移动导致头文件引用方式不对，特此总结下import原理">
+<meta property="og:image" content="/images/import/1.png">
+<meta property="og:image" content="/images/import/2.png">
+<meta property="og:image" content="/images/import/3.png">
+<meta property="og:image" content="/images/import/4.png">
+<meta property="og:image" content="/images/import/5.png">
+<meta property="og:image" content="/images/import/7.png">
+<meta property="og:image" content="/images/import/6.png">
+<meta property="og:image" content="/images/import/8.png">
+<meta property="og:image" content="/images/import/9.png">
+<meta property="og:image" content="/images/import/10.png">
+<meta property="og:updated_time" content="2019-10-01T08:22:53.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC import探究">
+<meta name="twitter:description" content="参考文章：iOS里的导入头文件 在项目二进制化的过程中，打包framework经常出现头文件报错，主要缘于项目组件化完成后，因为文件的移动导致头文件引用方式不对，特此总结下import原理">
+<meta name="twitter:image" content="/images/import/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="huanghehg.github.io/2019/09/28/import/"/>
+
+
+
+
+
+  <title>OC import探究 | 黄河的个人空间</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黄河的个人空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="huanghehg.github.io/2019/09/28/import/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huanghe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄河的个人空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OC import探究</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T11:04:09+08:00">
+                2019-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考文章：<a href="https://zybuluo.com/qidiandasheng/note/602118" target="_blank" rel="external">iOS里的导入头文件</a></p>
+<p>在项目<a href="https://dmanager.github.io/ios/2019/01/21/%E5%9F%BA%E4%BA%8ECocoaPods%E7%9A%84%E7%BB%84%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8C%96%E5%AE%9E%E8%B7%B5/" target="_blank" rel="external">二进制化</a>的过程中，打包<code>framework</code>经常出现头文件报错，主要缘于项目组件化完成后，因为文件的移动导致头文件引用方式不对，特此总结下<code>import</code>原理</p>
+<a id="more"></a>
+<h3 id="import-lt-gt-和-import””"><a href="#import-lt-gt-和-import””" class="headerlink" title="#import&lt;&gt; 和 #import””"></a>#import&lt;&gt; 和 #import””</h3><p><code>#import&lt;&gt;</code> 是<code>从Build Setting</code>–&gt;<code>Search Paths</code>–&gt;<code>Header Search Paths</code>路径去检索头文件(<code>Always Search User Paths</code> 已经被标记废弃)</p>
+<p><code>#import&quot; &quot;</code> 是<code>从Build Setting</code>–&gt;<code>Search Paths</code>–&gt;<code>User Header Search Paths</code>–&gt;<code>Header Search Paths</code>路径去检索头文件</p>
+<p>新建一个<code>TestHeaderImport</code>项目，<code>Podfile</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">platform :ios, &apos;9.0&apos;</div><div class="line"></div><div class="line">target &apos;TestHeaderImport&apos; do</div><div class="line">    pod &apos;Masonry&apos;</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>更新过后<br><!-- <div align=center>
+<img src="/images/import/1.png">
+</div> --><br><img src="/images/import/1.png" alt=""></p>
+<p><code>User Header Search Path</code>为空，<code>Header Search Path</code>为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(inherited)</div><div class="line">&quot;$&#123;PODS_ROOT&#125;/Headers/Public&quot;</div><div class="line">&quot;$&#123;PODS_ROOT&#125;/Headers/Public/Masonry&quot;</div></pre></td></tr></table></figure></p>
+<p><img src="/images/import/2.png" alt=""></p>
+<p>从上图可以看到此时<code>&lt;&gt;</code>引用是会有智能提示的，但引号引用没有智能提示，主要是因为<code>Search Path</code>的原因，但使用引号引用也不会报错，因为在编译时引号引用除了去查<code>User Header Search Paths</code>还会去寻找<code>Header Search Paths</code></p>
+<p>如果此时把<code>Header Search Path</code>清空，那么<code>&lt;&gt;</code>引用也不会有智能提示<br><img src="/images/import/3.png" alt=""></p>
+<p>如果此时把<code>User Header Search Path</code>设置为上面配置，那么引号引用会智能提示和<code>&lt;&gt;</code>引用并不会<br><img src="/images/import/4.png" alt=""></p>
+<p>疑点：即使<code>User Header Search Path</code> 和 <code>Header Search Path</code>都删除的话，仍然可以编译通过</p>
+<p><b><code>$(inherited)</code></b>代表继承，此处加上这个配置代表继承上级配置，xcode<a href="https://stackoverflow.com/questions/15343122/what-is-inherited-in-xcodes-search-path-settings" target="_blank" rel="external">继承链</a>：</p>
+<p><code>Resolved &lt;- Target &lt;- xcconfig &lt;- Project &lt;- iOS Default</code></p>
+<p><img src="/images/import/5.png" alt=""></p>
+<p>可以看到Target中如果配置了<code>$(inherited)</code>那么将从<code>xcconfig、Project、iOS Default</code>中同项配置继承过来</p>
+<p>其中<code>cocoapods</code>会自动生成<code>xcconfig</code>文件<br><img src="/images/import/7.png" alt=""></p>
+<p>我们也可以自定义自己的<code>xcconfig</code>文件,创建好<code>.xcconfig</code>文件在下图选中即可</p>
+<p><img src="/images/import/6.png" alt=""></p>
+<p>我们将<code>cocoapods</code>生成的<code>xcconfig</code>中<code>search_path</code>删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">HEADER_SEARCH_PATHS = $(inherited)</div><div class="line">...</div><div class="line">OTHER_CFLAGS = $(inherited) -isystem &quot;$&#123;PODS_ROOT&#125;/Headers/Public&quot; -isystem &quot;$&#123;PODS_ROOT&#125;/Headers/Public/Masonry&quot;</div></pre></td></tr></table></figure></p>
+<p>发现仍然能编译通过，后来发现<code>xcconfig</code>中的<code>OTHER_CFLAGS</code>也配置了路径，将其删除后，发现此时编译报错了。</p>
+<p><code>OTHER_CFLAGS</code>中</p>
+<blockquote>
+<p>-isystem dir </p>
+<p>Search dir for header files, after all directories specified by -I but before the standard system directories. Mark it as a system directory, so that it gets the same special treatment as is applied to the standard system directories. If dir begins with =, then the = will be replaced by the sysroot prefix; see –sysroot and -isysroot.</p>
+</blockquote>
+<p>用 <a href="https://www.e-learn.cn/content/wangluowenzhang/242836" target="_blank" rel="external"><code>-isystem</code></a> 修饰的路径，会打上系统路径的标,所以此处设置也会生效。</p>
+<p>我们平时使用的时候，在依赖自己模块的头文件时，使用引号引用，在依赖其他模块的头文件时，使用<code>&lt;&gt;</code>引用</p>
+<p>首先在依赖自己模块的头文件时，使用引号引用，因为尖括号引用会直接报错，原因是尖括号引用不会搜索当前文件所在的路径</p>
+<p><img src="/images/import/8.png" alt=""></p>
+<p>其次在依赖其他模块的头文件时，使用<code>&lt;&gt;</code>引用</p>
+<ul>
+<li><code>cocoapods</code>会将依赖的库放进<code>HeaderSearchPath</code>中</li>
+<li>在依赖二进制包时，单纯使用引号头文件会报错<br><img src="/images/import/9.png" alt=""></li>
+</ul>
+<p>因为在<code>header search path</code>中指定了头文件目录，单独引入头文件会找不到</p>
+<p><img src="/images/import/10.png" alt=""></p>
+<p>上图中后面的<code>non-recursive</code>代表不递归查找指定路径，解决头文件报错可以使用以下几种方案：</p>
+<ol>
+<li>可以将此项设置改为<code>recursive</code>，但是这样会导致：<ul>
+<li><code>cocoapods</code>默认配置为<code>non-recursive</code>，会导致重复工作，所有此类依赖都需这样设置</li>
+<li>设为<code>recursive</code>会降低编译效率</li>
+<li>如果项目后期使用二进制依赖，会导致文件引用问题，除非自定义二进制打包脚本</li>
+</ul>
+</li>
+<li>使用路径/文件名的方式，其中使用引号和<code>&lt;&gt;</code>都可以，但推荐使用<code>&lt;&gt;</code>，因为可以提高编译效率，具体原因上文已经解释<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#import &lt;UMMobClick/MobClick.h&gt;</div><div class="line">#import &quot;UMMobClick/MobClick.h&quot;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在引入头文件时，发现下面写法也是可以的，原因参考非framework引用，类似原来是<code>&lt;A/A.h&gt;</code>，其中<code>A.h</code> 又被包了一层<code>B</code>，最终变为<code>&lt;A/B/A.h&gt;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#import &lt;UMengAnalytics-NO-IDFA/UMMobClick/MobClick.h&gt;</div><div class="line">#import &quot;UMengAnalytics-NO-IDFA/UMMobClick/MobClick.h&quot;</div></pre></td></tr></table></figure></p>
+<p>虽然上面引用不会报错，但不建议这样使用，<b>因为当时在做项目二进制依赖时，这样使用会导致报错，因为后面一直未曾重现，留待再次遇见时探究原因。</b><br>还可以想到的一个原因便是，如上面引入的<code>UMengAnalytics-NO-IDFA</code>分为多个版本的二进制包，当在不同需求下依赖不同二进制是，代码里需要更改头文件引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#import &lt;UMengAnalytics-AA-IDFA/UMMobClick/MobClick.h&gt;</div><div class="line">#import &lt;UMengAnalytics-XX-IDFA/UMMobClick/MobClick.h&gt;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>了解了<code>import</code>原理后，对目前打包二进制时报的头文件错误有一个清晰的认知，所以下一步要做的便是将库<code>import</code>方式做些更改，将依赖别的库的头文件引用方式改为<code>&lt;&gt;</code>引用，最终实现所有库的二进制化，大大提升开发编译效率</p>
+<p>最后附上更改脚本：<a href="https://github.com/huanghehg/Script" target="_blank" rel="external">header_change</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag"># ios</a>
+          
+            <a href="/tags/Xcode/" rel="tag"># Xcode</a>
+          
+            <a href="/tags/import/" rel="tag"># import</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/02/ios知识碎片/" rel="next" title="ios知识碎片">
+                <i class="fa fa-chevron-left"></i> ios知识碎片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">huanghe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#import-lt-gt-和-import””"><span class="nav-number">1.</span> <span class="nav-text">#import<> 和 #import””</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanghe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
