@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考文章： iPhone上使用 itms-services 协议安装 IPA 包 如何创建一个自签名的SSL证书(X509) 持续化集成中，为了应对多项目并行开发的测试需求，需要提供一个ios端的安装包平台。 想要实现自主分发，主要依赖itms-services服务  首先iphone捕捉到itms-services://开头的链接如itms-services://?action=download">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网搭建ipa下载网站">
+<meta property="og:url" content="huanghehg.github.io/2019/10/18/site-for-ipa-download/index.html">
+<meta property="og:site_name" content="黄河的个人空间">
+<meta property="og:description" content="参考文章： iPhone上使用 itms-services 协议安装 IPA 包 如何创建一个自签名的SSL证书(X509) 持续化集成中，为了应对多项目并行开发的测试需求，需要提供一个ios端的安装包平台。 想要实现自主分发，主要依赖itms-services服务  首先iphone捕捉到itms-services://开头的链接如itms-services://?action=download">
+<meta property="og:image" content="huanghehg.github.io/2019/10/18/site-for-ipa-download/site-for-ipa-download/2.png">
+<meta property="og:image" content="huanghehg.github.io/2019/10/18/site-for-ipa-download/site-for-ipa-download/3.png">
+<meta property="og:image" content="huanghehg.github.io/2019/10/18/site-for-ipa-download/site-for-ipa-download/4.png">
+<meta property="og:image" content="huanghehg.github.io/2019/10/18/site-for-ipa-download/site-for-ipa-download/6.png">
+<meta property="og:image" content="huanghehg.github.io/2019/10/18/site-for-ipa-download/site-for-ipa-download/7.png">
+<meta property="og:updated_time" content="2019-10-24T13:05:43.738Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内网搭建ipa下载网站">
+<meta name="twitter:description" content="参考文章： iPhone上使用 itms-services 协议安装 IPA 包 如何创建一个自签名的SSL证书(X509) 持续化集成中，为了应对多项目并行开发的测试需求，需要提供一个ios端的安装包平台。 想要实现自主分发，主要依赖itms-services服务  首先iphone捕捉到itms-services://开头的链接如itms-services://?action=download">
+<meta name="twitter:image" content="huanghehg.github.io/2019/10/18/site-for-ipa-download/site-for-ipa-download/2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="huanghehg.github.io/2019/10/18/site-for-ipa-download/"/>
+
+
+
+
+
+  <title>内网搭建ipa下载网站 | 黄河的个人空间</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黄河的个人空间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="huanghehg.github.io/2019/10/18/site-for-ipa-download/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huanghe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄河的个人空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">内网搭建ipa下载网站</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-18T10:31:04+08:00">
+                2019-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考文章：</p>
+<p><a href="https://www.jianshu.com/p/12003e7326c2" target="_blank" rel="external">iPhone上使用 itms-services 协议安装 IPA 包</a></p>
+<p><a href="https://www.cnblogs.com/lihuang/articles/4205540.html" target="_blank" rel="external">如何创建一个自签名的SSL证书(X509)</a></p>
+<p>持续化集成中，为了应对多项目并行开发的测试需求，需要提供一个ios端的安装包平台。</p>
+<p>想要实现自主分发，主要依赖<code>itms-services</code>服务</p>
+<ol>
+<li>首先<code>iphone</code>捕捉到<code>itms-services://</code>开头的链接如<code>itms-services://?action=download-manifest&amp;url=https://ip:port/plists/xxxxxx.plist</code></li>
+<li>然后根据<code>url</code>参数去获取对应的<code>plist</code>文件</li>
+<li>根据<code>plist</code>文件里的配置去下载<code>ipa</code>。</li>
+</ol>
+<p>所以我们需要提供的主要文件便是<code>plist</code>文件和<code>ipa</code>文件</p>
+<a id="more"></a>
+<h3 id="Xcode-生成plist和-ipa"><a href="#Xcode-生成plist和-ipa" class="headerlink" title="Xcode 生成plist和 ipa"></a>Xcode 生成<code>plist</code>和 <code>ipa</code></h3><p>首先我们先看xcode是如何生成plist文件的：</p>
+<p>打开 <code>Xcode -&gt; Product -&gt; Archive -&gt; Distribute App</code></p>
+<p><img src="site-for-ipa-download/2.png" alt=""></p>
+<p>企业证书选择Ad Hoc</p>
+<p><img src="site-for-ipa-download/3.png" alt=""><br><img src="site-for-ipa-download/4.png" alt=""></p>
+<p>这里的<code>App URL</code>便是下载ipa的地址</p>
+<p>最终会生成一个文件夹:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── DistributionSummary.plist</div><div class="line">├── ExportOptions.plist</div><div class="line">├── xxx.ipa</div><div class="line">├── Packaging.log</div><div class="line">└── manifest.plist</div></pre></td></tr></table></figure></p>
+<p>其中<code>manifest.plist</code>便是我们所需要的文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</div><div class="line">&lt;plist version=&quot;1.0&quot;&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">	&lt;key&gt;items&lt;/key&gt;</div><div class="line">	&lt;array&gt;</div><div class="line">		&lt;dict&gt;</div><div class="line">			&lt;key&gt;assets&lt;/key&gt;</div><div class="line">			&lt;array&gt;</div><div class="line">				&lt;dict&gt;</div><div class="line">					&lt;key&gt;kind&lt;/key&gt;</div><div class="line">					&lt;string&gt;software-package&lt;/string&gt;</div><div class="line">					&lt;key&gt;url&lt;/key&gt;</div><div class="line">					&lt;string&gt;https://ip:port/ipa/xxx.ipa&lt;/string&gt;</div><div class="line">				&lt;/dict&gt;</div><div class="line">				&lt;dict&gt;</div><div class="line">					&lt;key&gt;kind&lt;/key&gt;</div><div class="line">					&lt;string&gt;display-image&lt;/string&gt;</div><div class="line">					&lt;key&gt;url&lt;/key&gt;</div><div class="line">					&lt;string&gt;https://test1/ios&lt;/string&gt;</div><div class="line">				&lt;/dict&gt;</div><div class="line">				&lt;dict&gt;</div><div class="line">					&lt;key&gt;kind&lt;/key&gt;</div><div class="line">					&lt;string&gt;full-size-image&lt;/string&gt;</div><div class="line">					&lt;key&gt;url&lt;/key&gt;</div><div class="line">					&lt;string&gt;https://test1/ios1&lt;/string&gt;</div><div class="line">				&lt;/dict&gt;</div><div class="line">			&lt;/array&gt;</div><div class="line">			&lt;key&gt;metadata&lt;/key&gt;</div><div class="line">			&lt;dict&gt;</div><div class="line">				&lt;key&gt;bundle-identifier&lt;/key&gt;</div><div class="line">				&lt;string&gt;com.xxx&lt;/string&gt;</div><div class="line">				&lt;key&gt;bundle-version&lt;/key&gt;</div><div class="line">				&lt;string&gt;2.0.5&lt;/string&gt;</div><div class="line">				&lt;key&gt;kind&lt;/key&gt;</div><div class="line">				&lt;string&gt;software&lt;/string&gt;</div><div class="line">				&lt;key&gt;title&lt;/key&gt;</div><div class="line">				&lt;string&gt;Hestia&lt;/string&gt;</div><div class="line">			&lt;/dict&gt;</div><div class="line">		&lt;/dict&gt;</div><div class="line">	&lt;/array&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure>
+<h3 id="搭建Demo页面"><a href="#搭建Demo页面" class="headerlink" title="搭建Demo页面"></a>搭建Demo页面</h3><p>我们拿到这两个文件可以在电脑上搭一个简单的页面尝试下载。</p>
+<p>打开<code>Mac</code>自带<code>apache</code>服务，这里要注意一定要开启<code>https</code>，因为<code>itms-services://</code>不支持<code>http</code></p>
+<ol>
+<li><a href="https://www.cnblogs.com/lihuang/articles/4205540.html" target="_blank" rel="external">生成自签名证书</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out server.key 2048</div><div class="line">openssl req -new -key server.key -out server.csr</div><div class="line">openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt</div><div class="line">``` </div><div class="line"></div><div class="line">2. [mac 开启apache ssl](https://www.cnblogs.com/y500/p/3596473.html?utm_source=tuicool&amp;utm_medium=referral)</div><div class="line">  - `/etc/apache2/httpd.config`</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>LoadModule ssl_module libexec/apache2/mod_ssl.so<br>Include /private/etc/apache2/extra/httpd-vhosts.conf<br>Include /private/etc/apache2/extra/httpd-ssl.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- `/etc/apache2/extra/httpd-ssl.conf`</div></pre></td></tr></table></figure></p>
+<p>这里证书路径为默认的，建议将上一步的证书放在这个路径下，也可修改为自定义路径<br>SSLCertificateFile “/private/etc/apache2/server.crt”<br>SSLCertificateKeyFile “/private/etc/apache2/server.key”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- `/etc/apache2/extra/httpd-vhosts.conf`</div></pre></td></tr></table></figure></p>
+<virtualhost *:80=""><br>    ServerAdmin xxxx@xxxxxx.com<br>    DocumentRoot “/Library/WebServer/Documents”<br>    ServerName ip address<br>    ErrorLog “xxxxx/apache2/logs/error_log”<br>    CustomLog “xxxxx/apache2/logs/access_log” common<br></virtualhost>
+
+<virtualhost *:443=""><br>    SSLEngine on<br>    SSLCipherSuite ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP:+eNULL<br>    SSLCertificateFile /private/etc/apache2/server.crt<br>    SSLCertificateKeyFile /private/etc/apache2/server.key<br>    ServerName ip address<br>    DocumentRoot “/Library/WebServer/Documents”<br></virtualhost>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- 配置改完之后可以在终端执行`sudo apachectl configtest`验证是否通过</div><div class="line">- 然后执行`sudo apachectl`，如果已经有在运行的`httpd`服务，先把之前的`kill`掉</div><div class="line"></div><div class="line">这个时候在浏览器打开`https://localhost`便可以看到页面了</div><div class="line"></div><div class="line">我们打开指定的网页目录`/Library/WebServer/Documents`，编辑一下`html`文件，然后将`xcode`生成的`plist`和`ipa`放到路径下</div></pre></td></tr></table></figure>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p><html lang="en"></html></p>
+<p><head><br>    <meta charset="UTF-8"><br>    <meta name="viewport" content="width=device-width, initial-scale=1.0"><br>    <meta http-equiv="X-UA-Compatible" content="ie=edge"><br>    <title>Document</title><br></head></p>
+<body><br>    <a href="itms-services://?action=download-manifest&url=https://xxxx:443/plist/manifest.plist" target="_blank" rel="external">下载</a><br>    <a href="Cer/server.crt">证书</a><br></body>
+
+<p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>.<br>├── Cer<br>│   └── server.crt<br>├── PoweredByMacOSX.gif<br>├── PoweredByMacOSXLarge.gif<br>├── index.html.en<br>├── ipa<br>│   └── xxx.ipa<br>└── plist<br>    └── manifest.plist<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">在手机上访问刷新页面，点击新增的`a`标签，此时会提示无法连接到服务器。</div><div class="line"></div><div class="line">我们需要手机信任当前服务器证书</div><div class="line">- 将上面生成的ssl证书中的`server.crt`放到网页路径下</div><div class="line">- 然后先点击证书，安装并信任后，再点击下载</div><div class="line"></div><div class="line">![](site-for-ipa-download/5.png)</div><div class="line"></div><div class="line">至此为止，简单的Demo已经完成了，下一步便是完善了</div><div class="line"></div><div class="line">### 搭建iOS下包平台</div><div class="line"></div><div class="line">整个流程如下图：</div><div class="line"></div><div class="line">![](site-for-ipa-download/1.png)</div><div class="line"></div><div class="line">1. 代码提交后，通过`jenkins`打包ipa</div><div class="line">2. `jenkins`将`ipa`上传至`ipa`存储服务器</div><div class="line">3. 接收到`ipa`后生成`plist`文件</div><div class="line">4. 将信息写入`sql`供查询使用</div><div class="line">5. 搭建一个前端页面供测试下载</div><div class="line"></div><div class="line">#### 服务端部分</div><div class="line"></div><div class="line">服务端部分使用了`python3`主要依赖了`flask`框架</div><div class="line"></div><div class="line">[代码地址](https://github.com/huanghehg/Script/blob/master/ipaServer/ipa_server.py)（ps：代码没有分模块，没有拆分，没有加异常判断）</div></pre></td></tr></table></figure></p>
+<p>upload : 上传接口，接收package,job_name,build_number</p>
+<p>get_ipa_info: 获取接口，返回不同job_name的列表，接收page，page_index</p>
+<p>get_ipa_info_by_job_name: 根据job_name获取当前的所有ipa列表</p>
+<p>可以使用下面curl测试：<br>curl “<a href="https://ip:port/upload" target="_blank" rel="external">https://ip:port/upload</a>“ -F “package=@xxx.ipa” -F “job_name=xxx” -F “build_number=1” –insecure</p>
+<p>```</p>
+<h4 id="数据库部分"><a href="#数据库部分" class="headerlink" title="数据库部分"></a>数据库部分</h4><p>数据库部分主要使用了<code>mysql</code></p>
+<p><img src="site-for-ipa-download/6.png" alt=""></p>
+<h4 id="前端部分"><a href="#前端部分" class="headerlink" title="前端部分"></a>前端部分</h4><p>前端部分主要使用<code>vue</code>，由同事帮忙开发，<a href="https://github.com/brokge/ios-down" target="_blank" rel="external">源码</a></p>
+<p>最终效果：</p>
+<p><img src="site-for-ipa-download/7.png" alt=""></p>
+<hr>
+<p>这就是简单的一个安装包平台的搭建流程，对于企业账号来说，可以无限分发，但对于个人开发者账号的话，只有添加过的设备才能安装。</p>
+<p>搭建好平台后，我们只需要在<code>jenkins</code>上面打包成功之后，添加一个脚本将<code>ipa</code>发送给服务器就好了，可以直接使用<code>curl</code>命令</p>
+<p>最终我们将这个网页发给测试使用，就可以满足多项目并发时快速打包的需求了！！！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/28/import/" rel="next" title="OC import探究">
+                <i class="fa fa-chevron-left"></i> OC import探究
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">huanghe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-生成plist和-ipa"><span class="nav-number">1.</span> <span class="nav-text">Xcode 生成plist和 ipa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建Demo页面"><span class="nav-number">2.</span> <span class="nav-text">搭建Demo页面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库部分"><span class="nav-number">2.1.</span> <span class="nav-text">数据库部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端部分"><span class="nav-number">2.2.</span> <span class="nav-text">前端部分</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanghe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
