@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ios," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,20 +79,12 @@
 
 
 
-<meta name="description" content="load vs initialize参考文章 + (void)load当类或分类被添加到 Objective-C runtime 时被调用+ (void)initialize在类或它的子类收到第一条消息之前被调用">
-<meta name="keywords" content="ios">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ios知识碎片">
-<meta property="og:url" content="huanghehg.github.io/2019/09/02/ios知识碎片/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="黄河的个人空间">
+<meta property="og:url" content="huanghehg.github.io/tags/ipa/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="load vs initialize参考文章 + (void)load当类或分类被添加到 Objective-C runtime 时被调用+ (void)initialize在类或它的子类收到第一条消息之前被调用">
-<meta property="og:image" content="/images/ioszhishisuipian/2.png">
-<meta property="og:image" content="/images/ioszhishisuipian/1.png">
-<meta property="og:updated_time" content="2019-10-24T13:05:48.976Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ios知识碎片">
-<meta name="twitter:description" content="load vs initialize参考文章 + (void)load当类或分类被添加到 Objective-C runtime 时被调用+ (void)initialize在类或它的子类收到第一条消息之前被调用">
-<meta name="twitter:image" content="/images/ioszhishisuipian/2.png">
+<meta name="twitter:title" content="黄河的个人空间">
 
 
 
@@ -122,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="huanghehg.github.io/2019/09/02/ios知识碎片/"/>
+  <link rel="canonical" href="huanghehg.github.io/tags/ipa/"/>
 
 
 
 
 
-  <title>ios知识碎片 | 黄河的个人空间</title>
+  <title>标签: ipa | 黄河的个人空间</title>
   
 
 
@@ -147,7 +139,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -251,161 +243,54 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>ipa<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="huanghehg.github.io/2019/09/02/ios知识碎片/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huanghe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄河的个人空间">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">ios知识碎片</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2019/10/18/site-for-ipa-download/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">内网搭建ipa下载网站</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-02T10:49:10+08:00">
-                2019-09-02
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-10-18T10:31:04+08:00"
+              content="2019-10-18" >
+          10-18
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="load-vs-initialize"><a href="#load-vs-initialize" class="headerlink" title="load vs initialize"></a>load vs initialize</h3><p><a href="http://blog.leichunfeng.com/blog/2015/05/02/objective-c-plus-load-vs-plus-initialize/" target="_blank" rel="external">参考文章</a></p>
-<p><code>+ (void)load</code>当类或分类被添加到 Objective-C runtime 时被调用<br><code>+ (void)initialize</code>在类或它的子类收到第一条消息之前被调用</p>
-<a id="more"></a>
-<p>下面是自行尝试结果：<br>类关系图：<br><img src="/images/ioszhishisuipian/2.png" alt=""></p>
-<p><code>+ (void)load</code>调用顺序：父类  &gt;  子类  &gt;  分类<br><code>+ (void)initialize</code>调用顺序：</p>
-<ul>
-<li>若父类之前<code>initialize</code>已经被调用过，那么只根据msg_send 调用本类<code>initialize</code></li>
-<li>若父类之前<code>initialize</code>没有被调用过，那么继续看父类的父类，直到找到一个被掉过的类，然后依次从根据<code>msg_send</code>父类调用到子类</li>
-</ul>
-<h3 id="App启动流程"><a href="#App启动流程" class="headerlink" title="App启动流程"></a>App启动流程</h3><p><img src="/images/ioszhishisuipian/1.png" alt=""></p>
-<h3 id="iOS-armv7-armv7s-arm64区别与应用32位、64位配置"><a href="#iOS-armv7-armv7s-arm64区别与应用32位、64位配置" class="headerlink" title="iOS armv7, armv7s, arm64区别与应用32位、64位配置"></a>iOS armv7, armv7s, arm64区别与应用32位、64位配置</h3><p><a href="https://www.jianshu.com/p/567d3b730608" target="_blank" rel="external">参考文章</a></p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ios/" rel="tag"># ios</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/02/18/block/" rel="next" title="深入学习block">
-                <i class="fa fa-chevron-left"></i> 深入学习block
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/28/import/" rel="prev" title="OC import探究">
-                OC import探究 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -413,10 +298,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -437,17 +318,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -507,22 +379,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#load-vs-initialize"><span class="nav-number">1.</span> <span class="nav-text">load vs initialize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App启动流程"><span class="nav-number">2.</span> <span class="nav-text">App启动流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS-armv7-armv7s-arm64区别与应用32位、64位配置"><span class="nav-number">3.</span> <span class="nav-text">iOS armv7, armv7s, arm64区别与应用32位、64位配置</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -656,10 +512,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
