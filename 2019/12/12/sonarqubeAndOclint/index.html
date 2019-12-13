@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="背景随着代码量的日益增加，以及团队的扩大，代码的质量需要有一定的保证，再加上目前有些功能需要oem给客户使用，一些KA用户会要求提供一些代码分析报告，所以本文将总结一下如何搭建iOS静态代码分析系统">
+<meta name="description" content="参考文章：  Fastlane+OCLint+SonarQube OS Sonar集成流程详解 SonarQube 的安装与使用 sona-objective-c  背景随着代码量的日益增加，以及团队的扩大，代码的质量需要有一定的保证，再加上目前有些功能需要oem给客户使用，一些KA用户会要求提供一些代码分析报告，所以本文将总结一下如何搭建iOS静态代码分析系统">
 <meta name="keywords" content="ios,sonarqube,oclint">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS静态代码分析">
 <meta property="og:url" content="huanghehg.github.io/2019/12/12/sonarqubeAndOclint/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="背景随着代码量的日益增加，以及团队的扩大，代码的质量需要有一定的保证，再加上目前有些功能需要oem给客户使用，一些KA用户会要求提供一些代码分析报告，所以本文将总结一下如何搭建iOS静态代码分析系统">
+<meta property="og:description" content="参考文章：  Fastlane+OCLint+SonarQube OS Sonar集成流程详解 SonarQube 的安装与使用 sona-objective-c  背景随着代码量的日益增加，以及团队的扩大，代码的质量需要有一定的保证，再加上目前有些功能需要oem给客户使用，一些KA用户会要求提供一些代码分析报告，所以本文将总结一下如何搭建iOS静态代码分析系统">
 <meta property="og:image" content="/images/sonarqube/10.png">
 <meta property="og:image" content="/images/sonarqube/5.png">
 <meta property="og:image" content="/images/sonarqube/1.png">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="/images/sonarqube/7.png">
 <meta property="og:image" content="/images/sonarqube/8.png">
 <meta property="og:image" content="/images/sonarqube/9.png">
-<meta property="og:updated_time" content="2019-12-13T15:28:28.593Z">
+<meta property="og:updated_time" content="2019-12-13T15:34:32.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS静态代码分析">
-<meta name="twitter:description" content="背景随着代码量的日益增加，以及团队的扩大，代码的质量需要有一定的保证，再加上目前有些功能需要oem给客户使用，一些KA用户会要求提供一些代码分析报告，所以本文将总结一下如何搭建iOS静态代码分析系统">
+<meta name="twitter:description" content="参考文章：  Fastlane+OCLint+SonarQube OS Sonar集成流程详解 SonarQube 的安装与使用 sona-objective-c  背景随着代码量的日益增加，以及团队的扩大，代码的质量需要有一定的保证，再加上目前有些功能需要oem给客户使用，一些KA用户会要求提供一些代码分析报告，所以本文将总结一下如何搭建iOS静态代码分析系统">
 <meta name="twitter:image" content="/images/sonarqube/10.png">
 
 
@@ -340,7 +340,14 @@
       
 
       
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>随着代码量的日益增加，以及团队的扩大，代码的质量需要有一定的保证，再加上目前有些功能需要oem给客户使用，一些KA用户会要求提供一些代码分析报告，所以本文将总结一下如何搭建iOS静态代码分析系统</p>
+        <p>参考文章：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/74a21c5ed076" target="_blank" rel="external">Fastlane+OCLint+SonarQube</a></li>
+<li><a href="https://my.oschina.net/ChenTF/blog/708646" target="_blank" rel="external">OS Sonar集成流程详解</a></li>
+<li><a href="https://testerhome.com/topics/17117" target="_blank" rel="external">SonarQube 的安装与使用</a></li>
+<li><a href="https://gitlab.com/raatiniemi/sonar-objective-c#anchor-077" target="_blank" rel="external">sona-objective-c</a></li>
+</ul>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>随着代码量的日益增加，以及团队的扩大，代码的质量需要有一定的保证，再加上目前有些功能需要oem给客户使用，一些KA用户会要求提供一些代码分析报告，所以本文将总结一下如何搭建iOS静态代码分析系统</p>
 <a id="more"></a>
 <hr>
 <p>本文涉及的工具及平台：</p>
