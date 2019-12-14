@@ -93,7 +93,7 @@
 <meta property="og:image" content="/images/tableView/5.png">
 <meta property="og:image" content="/images/tableView/6.png">
 <meta property="og:image" content="/images/tableView/7.png">
-<meta property="og:updated_time" content="2019-01-04T06:06:25.999Z">
+<meta property="og:updated_time" content="2019-12-14T03:05:09.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS页面框架">
 <meta name="twitter:description" content="由于业务特殊大部分业务需求都是配置累页面同一个页面cell种类特别多所以同事封装了一套框架来简化开发，学习了一下，然后自己总结改动了一个简化版，改动了section和cellModel以及headerView的实现方式 github地址">
@@ -310,6 +310,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -342,9 +364,7 @@
 <a id="more"></a>
 <hr>
 <p>正常我们在开发中用<code>tableView</code>时，每一个<code>vc</code>都会有一个<code>tableView</code>且都需要实现<code>dataSource、delegate</code></p>
-<p>正常数据到显示要通过以下方式传递：</p>
-<div align="center"><br><img src="/images/tableView/1.png" width="300"><br></div>
-
+<p>正常数据到显示要通过以下方式传递：<br><img src="/images/tableView/1.png" alt=""></p>
 <ol>
 <li>数据传递到<code>vc</code>（或者直接在<code>vc</code>请求）</li>
 <li><code>vc</code>实现<code>tableView</code>的<code>delegate</code></li>
@@ -353,11 +373,9 @@
 <li>一般我们<code>cell</code>会持有<code>data</code></li>
 </ol>
 <p>然而如果<code>cell</code>样式过多:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&#123;&quot;type&quot;:&quot;1&quot;,&quot;value&quot;:[...]&#125;,&#123;&quot;type&quot;:&quot;2&quot;,&quot;value&quot;:&quot;&quot;&#125;,&#123;&quot;type&quot;:&quot;3&quot;,&quot;value&quot;:&quot;&quot;&#125;]</div></pre></td></tr></table></figure></p>
-<div align="center"><br><img src="/images/tableView/2.png" width="300"><br></div>
-
+<p><img src="/images/tableView/2.png" alt=""></p>
 <p>然而如果<code>data</code>结构和<code>cell</code>样式都过多:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[group1, 数据结构1]</div><div class="line">[group2，数据结构2]</div><div class="line">[group3，数据结构3]</div></pre></td></tr></table></figure></p>
-<div align="center"><br><img src="/images/tableView/3.png" width="300"><br></div>
-
+<p><img src="/images/tableView/3.png" alt=""></p>
 <p>问题：</p>
 <ol>
 <li>每一个<code>vc</code>都实现<code>tableView</code>代理的代码重复</li>
@@ -381,25 +399,18 @@
 <li>提供<code>section</code>来管理<code>cellModel</code>(<code>HHSectionProxy</code>)的增删（可以把它当成一个<code>Array</code>）</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">@protocol HHSectionProxy &lt;NSObject&gt;</div><div class="line"></div><div class="line">@required</div><div class="line">@property (nonatomic, strong, readonly)NSArray&lt;HHCellViewModelProxy&gt; *rows;</div><div class="line"></div><div class="line">@property (nonatomic, strong)id&lt;HHSectionViewModelProxy&gt; bindHeaderViewModel;</div><div class="line">@property (nonatomic, strong)id&lt;HHSectionViewModelProxy&gt; bindFootererViewModel;</div><div class="line"></div><div class="line">- (void)addRow:(id&lt;HHCellViewModelProxy&gt;)row;</div><div class="line">- (void)addRows:(NSArray&lt;HHCellViewModelProxy&gt; *)rows;</div><div class="line">- (void)insertRow:(id&lt;HHCellViewModelProxy&gt;)row atIndex:(NSUInteger)index;</div><div class="line"></div><div class="line">- (void)insertRow:(id&lt;HHCellViewModelProxy&gt;)row beforeRow:(id&lt;HHCellViewModelProxy&gt;)baseRow;</div><div class="line">- (void)insertRow:(id&lt;HHCellViewModelProxy&gt;)row behindRow:(id&lt;HHCellViewModelProxy&gt;)baseRow;</div><div class="line"></div><div class="line">- (void)removeRow:(id&lt;HHCellViewModelProxy&gt;)row;</div><div class="line">- (void)removeRows:(NSArray&lt;HHCellViewModelProxy&gt; *)rows;</div><div class="line">- (void)removeRowAtIndex:(NSUInteger)index;</div><div class="line">- (void)removeAllRows;</div><div class="line"></div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
-<div align="center"><br><img src="/images/tableView/4.png" width="300"><br></div>
-
-
+<p><img src="/images/tableView/4.png" alt=""></p>
 <ol>
 <li><code>manager</code>管理<code>section</code>的增删</li>
 </ol>
-<div align="center"><br><img src="/images/tableView/5.png" width="300"><br></div>
-
-
+<p><img src="/images/tableView/5.png" alt=""></p>
 <p>最终：<code>manager</code>会在<code>cellForRow</code>里找到<code>section</code>找到<code>cellModell</code>找到<code>cell</code></p>
-<div align="center"><br><img src="/images/tableView/6.png" width="600"><br></div>
-
-
+<p><img src="/images/tableView/6.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath &#123;</div><div class="line">    Class cellClass = [self getCurrentRowViewClassWithIndexPath:indexPath];</div><div class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellClass)];</div><div class="line">    if (!cell) &#123;</div><div class="line">        cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(cellClass)];</div><div class="line">        if ([cell respondsToSelector:@selector(cellForInitalized)]) &#123;</div><div class="line">            [cell performSelector:@selector(cellForInitalized)];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    if ([cell respondsToSelector:@selector(configCellWithViewModel:)]) &#123;</div><div class="line">        [(id &lt;HHCellViewProxy&gt;)cell configCellWithViewModel:[self rowAtIndexPath:indexPath]];</div><div class="line">    &#125;</div><div class="line">    return cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
 <p>最后我们创建页面的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">HHBaseSection *section = [[HHBaseSection alloc] init];</div><div class="line">    </div><div class="line">for (NSDictionary *dic in array) &#123;</div><div class="line">    HHListViewModel *viewModel = [[HHListViewModel alloc] init];</div><div class="line">    viewModel.title = dic[@&quot;title&quot;];</div><div class="line">    viewModel.detail = dic[@&quot;detail&quot;];</div><div class="line">    viewModel.height = [dic[@&quot;height&quot;] floatValue];</div><div class="line">    [section addRow:viewModel];</div><div class="line">&#125;</div><div class="line">[self.manager addSection:section];</div><div class="line"></div><div class="line">[self.manager reloadData];</div></pre></td></tr></table></figure></p>
 <p><strong><code>cell</code> 和<code>cellModel</code>是不依赖业务的，我们可以把他们放在统一的一个组件库里</strong></p>
-<div align="center"><br><img src="/images/tableView/7.png" width="300"><br></div>
-
+<p><img src="/images/tableView/7.png" alt=""></p>
 
       
     </div>
@@ -521,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="黄河的个人空间">
 <meta property="og:description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51330824 参考文章http://www.cocoachina.com/ios/20150228/11206.htmlhttp://blog.csdn.net/yohunl/article/details/48471489">
 <meta property="og:image" content="http://img.blog.csdn.net/20160506131053930">
-<meta property="og:updated_time" content="2017-11-11T08:21:58.000Z">
+<meta property="og:updated_time" content="2019-12-14T03:20:06.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocoapods 私有库1">
 <meta name="twitter:description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51330824 参考文章http://www.cocoachina.com/ios/20150228/11206.htmlhttp://blog.csdn.net/yohunl/article/details/48471489">
@@ -303,6 +303,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -343,7 +365,7 @@
 <p>删除注释，不删除也可以但是看起来不方便<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new do |s|</div><div class="line">  s.name             = &quot;MyTool&quot;    #名称</div><div class="line">  s.version          = &quot;0.1.0&quot;             #版本号</div><div class="line">  s.summary          = &quot;Just Testing. MyTool&quot;     #简短介绍，下面是详细介绍</div><div class="line">  s.description      = &lt;&lt;-DESC</div><div class="line">                       Testing Private Podspec.</div><div class="line">                       *it is just a test file</div><div class="line">                       DESC</div><div class="line">  s.homepage         = &quot;https://git.oschina.net/huanghehg/MyTool.git&quot;                        #主页,这里要填写可以访问到的地址，不然验证不通过</div><div class="line">  s.license          = &apos;MIT&apos;              #开源协议</div><div class="line">  s.author           = &#123; &quot;huanghehg&quot; =&gt; &quot;huanghehg@163.com&quot; &#125;            #作者信息</div><div class="line">  s.source           = &#123; :git =&gt; &quot;https://git.oschina.net/huanghehg/MyTool.git&quot;, :tag =&gt; &quot;0.1.0&quot; &#125;      #项目地址，这里不支持ssh的地址，验证不通过，只支持HTTP和HTTPS，最好使用HTTPS</div><div class="line">  s.platform     = :ios, &apos;7.0&apos;            #支持的平台及版本</div><div class="line">  s.requires_arc = true                   #是否使用ARC，如果指定具体文件，则具体的问题使用ARC</div><div class="line"></div><div class="line">  s.source_files = &apos;Pod/Classes/**/*&apos;     #代码源文件地址，**/*表示Classes目录及其子目录下所有文件，如果有多个目录下则用逗号分开，如果需要在项目中分组显示，这里也要做相应的设置</div><div class="line">  s.resource_bundles = &#123;</div><div class="line">    &apos;PodTestLibrary&apos; =&gt; [&apos;Pod/Assets/*.png&apos;]</div><div class="line">  &#125;                                       #资源文件地址</div><div class="line"></div><div class="line">  s.public_header_files = &apos;Pod/Classes/**/*.h&apos;   #公开头文件地址</div><div class="line">  s.frameworks = &apos;UIKit&apos;                  #所需的framework，多个用逗号隔开</div><div class="line">  s.dependency &apos;AFNetworking&apos;, &apos;~&gt; 2.3&apos;   #依赖关系，该项目所依赖的其他库，如果有多个需要填写多个s.dependency</div><div class="line">end&lt;/twitter_username&gt;</div></pre></td></tr></table></figure></p>
 <p>配置完成保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pod lib lint (验证，不能出现error 如果出现warn 可以在后面跟上--allow-warnings,但不能确保你的类正确)</div><div class="line">MyTool passed validation.</div></pre></td></tr></table></figure></p>
 <p>然后就可以将<code>spec</code>提交到刚开始的<code>repo</code>里了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod repo push MyPrivateCocoaRepo MyTool.podspec (--allow-warnings)</div></pre></td></tr></table></figure></p>
-<p>此时<code>pod search MyTool</code><br><img src="http://img.blog.csdn.net/20160506131053930" alt="这里写图片描述"><br>就可以在Podfile中使用了</p>
+<p>此时<code>pod search MyTool</code><br><img src="http://img.blog.csdn.net/20160506131053930" alt=""><br>就可以在Podfile中使用了</p>
 <hr>
 <p>以上是添加到私有库的方法,在项目中使用时需要在<code>Podfile</code>中添加刚刚新建的私有<code>repo</code>地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">source &apos;https://git.oschina.net/huanghehg/MyPrivateCocoaRepo.git&apos;</div><div class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</div></pre></td></tr></table></figure></p>
 <p>添加到<code>public</code>的方法后期会在总结</p>
@@ -462,7 +484,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

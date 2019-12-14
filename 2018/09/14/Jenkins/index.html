@@ -103,7 +103,7 @@
 <meta property="og:image" content="/images/jenkins/14.png">
 <meta property="og:image" content="/images/jenkins/18.png">
 <meta property="og:image" content="/images/jenkins/19.png">
-<meta property="og:updated_time" content="2019-01-08T09:31:37.681Z">
+<meta property="og:updated_time" content="2019-12-14T03:18:15.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MAC 安装Jenkins">
 <meta name="twitter:description" content="官方文档 参考：jenkins 常用插件jenkins 配置">
@@ -320,6 +320,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Jenkins/" itemprop="url" rel="index">
+                    <span itemprop="name">Jenkins</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -362,13 +384,9 @@
 </ul>
 </li>
 </ul>
-<div align="center"><br><img src="/images/jenkins/1.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/2.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/3.png" width="300" align="center"><br></div>
-
-
+<p><img src="/images/jenkins/1.png" alt=""></p>
+<p><img src="/images/jenkins/2.png" alt=""></p>
+<p><img src="/images/jenkins/3.png" alt=""></p>
 <p>2、<a href="https://jenkins.io/" target="_blank" rel="external">官网</a>下包安装</p>
 <p>启动: <code>sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist</code></p>
 <p>停止: <code>sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</code></p>
@@ -378,52 +396,35 @@
 <li>输入上面显示的路径下的密码</li>
 <li>默认插件</li>
 <li>创建<code>admin</code>账户</li>
-<li><code>Jenkins URL</code>配置为访问<code>jenkins</code>的地址就是上面在浏览器输入的地址，==不配可能会报反向代理配置出错的<code>warning</code>==</li>
+<li><code>Jenkins URL</code>配置为访问<code>jenkins</code>的地址就是上面在浏览器输入的地址，<strong>不配可能会报反向代理配置出错的<code>warning</code></strong></li>
 </ol>
-<div align="center"><br><img src="/images/jenkins/5.png" width="300" align="center"><br></div>
-
+<p><img src="/images/jenkins/5.png" alt=""></p>
 <p>最终效果:</p>
-<div align="center"><br><img src="/images/jenkins/4.png" width="300" align="center"><br></div>
-
+<p><img src="/images/jenkins/4.png" alt=""></p>
 <p>到这一步基本算是简单配置完成了</p>
 <hr>
-<h3 id="简单任务构建"><a href="#简单任务构建" class="headerlink" title="简单任务构建"></a>简单任务构建</h3><div align="center"><br><img src="/images/jenkins/6.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/7.png" width="300" align="center"><br></div>
-
+<h3 id="简单任务构建"><a href="#简单任务构建" class="headerlink" title="简单任务构建"></a>简单任务构建</h3><p><img src="/images/jenkins/6.png" alt=""></p>
+<p><img src="/images/jenkins/7.png" alt=""></p>
 <p>正常一个简单的构建流程是</p>
 <ol>
 <li>拉代码</li>
 <li>跑脚本</li>
 <li>出结果</li>
 </ol>
-<div align="center"><br><img src="/images/jenkins/8.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/10.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/9.png" width="300" align="center"><br></div>
-
+<p><img src="/images/jenkins/8.png" alt=""></p>
+<p><img src="/images/jenkins/10.png" alt=""><br></p>
+<p><img src="/images/jenkins/9.png" alt=""></p>
 <p>简单写一个小输出</p>
-<div align="center"><br><img src="/images/jenkins/16.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/17.png" width="300" align="center"><br></div>
-
-
+<p><img src="/images/jenkins/16.png" alt=""></p>
+<p><img src="/images/jenkins/17.png" alt=""></p>
 <h3 id="多节点配置"><a href="#多节点配置" class="headerlink" title="多节点配置"></a>多节点配置</h3><p>如果使用的项目很多就可以考虑多节点配置，只需要添加节点服务器，节点服务器不需要安装<code>jenkins</code></p>
-<div align="center"><br><img src="/images/jenkins/11.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/12.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/13.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/14.png" width="300" align="center"><br></div>
-
+<p><img src="/images/jenkins/11.png" alt=""></p>
+<p><img src="/images/jenkins/12.png" alt=""></p>
+<p><img src="/images/jenkins/13.png" alt=""></p>
+<p><img src="/images/jenkins/14.png" alt=""></p>
 <p>多节点配置后可以在任务里配置指定节点</p>
-<div align="center"><br><img src="/images/jenkins/18.png" width="300" align="center"><br></div>
-
-<div align="center"><br><img src="/images/jenkins/19.png" width="300" align="center"><br></div>
-
-
+<p><img src="/images/jenkins/18.png" alt=""></p>
+<p><img src="/images/jenkins/19.png" alt=""></p>
 <hr>
 <p><code>jenkins</code>的基础配置很简单具体复杂的就需要依据项目而定</p>
 <p><a href="https://blog.csdn.net/liuxueli688/article/details/52483847" target="_blank" rel="external">jenkins 常用插件</a></p>
@@ -551,7 +552,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

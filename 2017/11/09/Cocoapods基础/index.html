@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160505200344943">
 <meta property="og:image" content="http://img.blog.csdn.net/20160505201016434">
 <meta property="og:image" content="http://img.blog.csdn.net/20160505201237658">
-<meta property="og:updated_time" content="2017-11-11T08:23:05.000Z">
+<meta property="og:updated_time" content="2019-12-14T03:19:56.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocoapods 基础">
 <meta name="twitter:description" content="从CSDN移动到个人博客 原文地址http://blog.csdn.net/u014452002/article/details/51325836">
@@ -306,6 +306,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -364,7 +386,14 @@ https://ruby.taobao.org/
 <hr>
 <p>输入要安装的插件，<code>install</code>就ok</p>
 <hr>
-<h4 id="三、cocoapods的简单使用-（仅限命令行）"><a href="#三、cocoapods的简单使用-（仅限命令行）" class="headerlink" title="三、cocoapods的简单使用 （仅限命令行）"></a>三、cocoapods的简单使用 （仅限命令行）</h4><p>1、首先 <code>cd</code>到项目文件中<br>2、新建名字为<code>Podfile</code>的文件,项目中有<code>Podfile</code>文件的直接走到 4<br>3、打开 <code>Podfile</code> ，输入  <code>platform:ios, ‘7.0‘</code><br>4、在终端输入<code>pod search sdwebimage</code><br><img src="http://img.blog.csdn.net/20160505201016434" alt="这里写图片描述"><br>5、找到你所需要的第三方库 找到  <code>pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.5&#39;</code>，复制到<code>Podfile</code>文件中，其中<code>3.7.5</code>是版本号 ，可以修改为 <code>versions</code>中的任意一个<br><img src="http://img.blog.csdn.net/20160505201237658" alt="这里写图片描述"><br>6、保存<code>Podfile</code> 在终端执行 <code>pod instal</code>  等待一会儿第三方库会自动<code>clone</code>在项目中（该过程时间有点久 可以在后面加上参数   <strong><code>--verbose --no-repo-update</code></strong> ，不更新<code>repo</code>）</p>
+<h4 id="三、cocoapods的简单使用-（仅限命令行）"><a href="#三、cocoapods的简单使用-（仅限命令行）" class="headerlink" title="三、cocoapods的简单使用 （仅限命令行）"></a>三、cocoapods的简单使用 （仅限命令行）</h4><ol>
+<li>首先 <code>cd</code>到项目文件中</li>
+<li>新建名字为<code>Podfile</code>的文件,项目中有<code>Podfile</code>文件的直接走到 4</li>
+<li>打开 <code>Podfile</code> ，输入  <code>platform:ios, ‘7.0‘</code></li>
+<li>在终端输入<code>pod search sdwebimage</code><br><img src="http://img.blog.csdn.net/20160505201016434" alt=""></li>
+<li>找到你所需要的第三方库 找到  <code>pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.5&#39;</code>，复制到<code>Podfile</code>文件中，其中<code>3.7.5</code>是版本号 ，可以修改为 <code>versions</code>中的任意一个<br><img src="http://img.blog.csdn.net/20160505201237658" alt=""></li>
+<li>保存<code>Podfile</code> 在终端执行 <code>pod instal</code>  等待一会儿第三方库会自动<code>clone</code>在项目中（该过程时间有点久 可以在后面加上参数   <strong><code>--verbose --no-repo-update</code></strong> ，不更新<code>repo</code>）</li>
+</ol>
 <hr>
 <p><strong>注意：对于项目中有<code>Podfile</code>文件，一定要<code>cd</code>到<code>Podfile</code> 文件所在的目录 执行<code>pod install</code><br>上传到git时，只需要上传Podfile 文件，其他自动生成的文件不要上传</strong></p>
 
@@ -491,7 +520,7 @@ https://ruby.taobao.org/
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
