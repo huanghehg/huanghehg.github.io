@@ -79,23 +79,23 @@
 
 
 
-<meta name="description" content="参考文章： iOS Memory 内存详解 (长文) Mach-O 文件格式探索 WWDC2018-深入了解iOS内存  操作系统内存处理机制内存是计算机重要组成部分，所有的应用程序在运行时都需要加载到内存中，供CPU读取指令来执行 从早期的冯·诺依曼结构可以看出存储器在计算机结构中的重要位置。随着计算机的发展，CPU的执行效率已经远超过存储器，后面为了高效率使用CPU，根据存储器的速度、材料、价">
+<meta name="description" content="参考文章： iOS Memory 内存详解 (长文) Mach-O 文件格式探索 WWDC2018-深入了解iOS内存">
 <meta name="keywords" content="ios,memory">
 <meta property="og:type" content="article">
 <meta property="og:title" content="内存">
 <meta property="og:url" content="huanghehg.github.io/2020/05/31/memory/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
-<meta property="og:description" content="参考文章： iOS Memory 内存详解 (长文) Mach-O 文件格式探索 WWDC2018-深入了解iOS内存  操作系统内存处理机制内存是计算机重要组成部分，所有的应用程序在运行时都需要加载到内存中，供CPU读取指令来执行 从早期的冯·诺依曼结构可以看出存储器在计算机结构中的重要位置。随着计算机的发展，CPU的执行效率已经远超过存储器，后面为了高效率使用CPU，根据存储器的速度、材料、价">
+<meta property="og:description" content="参考文章： iOS Memory 内存详解 (长文) Mach-O 文件格式探索 WWDC2018-深入了解iOS内存">
 <meta property="og:image" content="/memory/5.png">
 <meta property="og:image" content="/memory/6.png">
 <meta property="og:image" content="/memory/2.png">
 <meta property="og:image" content="/memory/1.png">
 <meta property="og:image" content="/memory/3.png">
 <meta property="og:image" content="/memory/4.png">
-<meta property="og:updated_time" content="2020-06-14T02:25:24.427Z">
+<meta property="og:updated_time" content="2020-06-14T02:26:09.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存">
-<meta name="twitter:description" content="参考文章： iOS Memory 内存详解 (长文) Mach-O 文件格式探索 WWDC2018-深入了解iOS内存  操作系统内存处理机制内存是计算机重要组成部分，所有的应用程序在运行时都需要加载到内存中，供CPU读取指令来执行 从早期的冯·诺依曼结构可以看出存储器在计算机结构中的重要位置。随着计算机的发展，CPU的执行效率已经远超过存储器，后面为了高效率使用CPU，根据存储器的速度、材料、价">
+<meta name="twitter:description" content="参考文章： iOS Memory 内存详解 (长文) Mach-O 文件格式探索 WWDC2018-深入了解iOS内存">
 <meta name="twitter:image" content="/memory/5.png">
 
 
@@ -340,6 +340,7 @@
 <p><a href="https://juejin.im/post/5d3ee77ef265da039f1290b2" target="_blank" rel="external">iOS Memory 内存详解 (长文)</a></p>
 <p><a href="https://github.com/Desgard/iOS-Source-Probe/blob/master/C/mach-o/Mach-O%20%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E6%8E%A2%E7%B4%A2.md" target="_blank" rel="external">Mach-O 文件格式探索</a></p>
 <p><a href="https://www.bilibili.com/video/BV1tE411f76p?t=306" target="_blank" rel="external">WWDC2018-深入了解iOS内存</a></p>
+<a id="more"></a>
 <hr>
 <h3 id="操作系统内存处理机制"><a href="#操作系统内存处理机制" class="headerlink" title="操作系统内存处理机制"></a>操作系统内存处理机制</h3><p>内存是计算机重要组成部分，所有的应用程序在运行时都需要加载到内存中，供CPU读取指令来执行</p>
 <p><img src="/memory/5.png" alt="冯·诺依曼结构" title="冯·诺依曼结构 图片来源[iOS Memory 内存详解 (长文)]"><br>从早期的冯·诺依曼结构可以看出存储器在计算机结构中的重要位置。随着计算机的发展，CPU的执行效率已经远超过存储器，后面为了高效率使用CPU，根据存储器的速度、材料、价位对其进行分级，如下图：<br><img src="/memory/6.png" alt="" title="存储分级 图片来源[iOS Memory 内存详解 (长文)]"></p>
