@@ -86,17 +86,17 @@
 <meta property="og:url" content="huanghehg.github.io/2020/05/31/memory/index.html">
 <meta property="og:site_name" content="黄河的个人空间">
 <meta property="og:description" content="参考文章： iOS Memory 内存详解 (长文) Mach-O 文件格式探索 WWDC2018-深入了解iOS内存">
-<meta property="og:image" content="/memory/5.png">
-<meta property="og:image" content="/memory/6.png">
-<meta property="og:image" content="/memory/2.png">
-<meta property="og:image" content="/memory/1.png">
-<meta property="og:image" content="/memory/3.png">
-<meta property="og:image" content="/memory/4.png">
-<meta property="og:updated_time" content="2020-06-14T02:26:09.605Z">
+<meta property="og:image" content="/images/memory/5.png">
+<meta property="og:image" content="/images/memory/6.png">
+<meta property="og:image" content="/images/memory/2.png">
+<meta property="og:image" content="/images/memory/1.png">
+<meta property="og:image" content="/images/memory/3.png">
+<meta property="og:image" content="/images/memory/4.png">
+<meta property="og:updated_time" content="2020-06-14T02:39:48.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存">
 <meta name="twitter:description" content="参考文章： iOS Memory 内存详解 (长文) Mach-O 文件格式探索 WWDC2018-深入了解iOS内存">
-<meta name="twitter:image" content="/memory/5.png">
+<meta name="twitter:image" content="/images/memory/5.png">
 
 
 
@@ -343,7 +343,7 @@
 <a id="more"></a>
 <hr>
 <h3 id="操作系统内存处理机制"><a href="#操作系统内存处理机制" class="headerlink" title="操作系统内存处理机制"></a>操作系统内存处理机制</h3><p>内存是计算机重要组成部分，所有的应用程序在运行时都需要加载到内存中，供CPU读取指令来执行</p>
-<p><img src="/memory/5.png" alt="冯·诺依曼结构" title="冯·诺依曼结构 图片来源[iOS Memory 内存详解 (长文)]"><br>从早期的冯·诺依曼结构可以看出存储器在计算机结构中的重要位置。随着计算机的发展，CPU的执行效率已经远超过存储器，后面为了高效率使用CPU，根据存储器的速度、材料、价位对其进行分级，如下图：<br><img src="/memory/6.png" alt="" title="存储分级 图片来源[iOS Memory 内存详解 (长文)]"></p>
+<p><img src="/images/memory/5.png" alt="冯·诺依曼结构" title="冯·诺依曼结构 图片来源[iOS Memory 内存详解 (长文)]"><br>从早期的冯·诺依曼结构可以看出存储器在计算机结构中的重要位置。随着计算机的发展，CPU的执行效率已经远超过存储器，后面为了高效率使用CPU，根据存储器的速度、材料、价位对其进行分级，如下图：<br><img src="/images/memory/6.png" alt="" title="存储分级 图片来源[iOS Memory 内存详解 (长文)]"></p>
 <p>现在我们讨论的<strong>内存主要指的是主存</strong>，所有的应用程序在运行时都需要加载到内存中，供CPU读取指令来执行。</p>
 <p>早期程序是直接加载到物理内存上面的，这样会有几个问题</p>
 <ol>
@@ -354,10 +354,10 @@
 <p>为了解决以上几种问题，操作系统使用以下方式管理内存</p>
 <ol>
 <li>操作系统采用了<strong>间接地址访问法</strong>，把程序的地址看作<strong>虚拟地址</strong>，当应用程序加载进内存时，操作系统为程序分配一块虚拟的连续的内存地址，然后通过映射方法，将虚拟地址映射到物理地址上，通过控制虚拟地址到物理地址的映射关系，可以达到地址隔离的目的。</li>
-<li>同时由于程序运行具有局部性特征，所以使用<strong>分页</strong>的方式来提高内存使用效率。分页的基本方法是通过将地址空间人为的分为固定大小的页。具体每页的大小由硬件决定，或者硬件支持多种页大小由操作系统决定。<strong>目前几乎所有的PC都是4k大小分页</strong>，几乎所有的硬件都采用一个叫<b>MMU (Memory Management Unit)</b>的部件来进行页映射，MMU一般都在CPU内部集成了，不会单独存在<br><img src="/memory/2.png" alt="" title="图片来自 （俞甲子 石凡 潘爱民. 《程序员的自我修养：链接、装载与库》）"></li>
+<li>同时由于程序运行具有局部性特征，所以使用<strong>分页</strong>的方式来提高内存使用效率。分页的基本方法是通过将地址空间人为的分为固定大小的页。具体每页的大小由硬件决定，或者硬件支持多种页大小由操作系统决定。<strong>目前几乎所有的PC都是4k大小分页</strong>，几乎所有的硬件都采用一个叫<b>MMU (Memory Management Unit)</b>的部件来进行页映射，MMU一般都在CPU内部集成了，不会单独存在<br><img src="/images/memory/2.png" alt="" title="图片来自 （俞甲子 石凡 潘爱民. 《程序员的自我修养：链接、装载与库》）"></li>
 <li>同时由于程序只需要关心虚拟内存地址，不需要关系物理内存地址，假设程序每次加载时虚拟地址是固定的，那么编写程序时只需关系虚拟内存地址就好了。（涉及到编译过程的重定向）</li>
 </ol>
-<p><img src="/memory/1.png" alt="" title="图片来自 （俞甲子 石凡 潘爱民. 《程序员的自我修养：链接、装载与库》）"></p>
+<p><img src="/images/memory/1.png" alt="" title="图片来自 （俞甲子 石凡 潘爱民. 《程序员的自我修养：链接、装载与库》）"></p>
 <p>如上图：运行程序1时，操作系统为程序1分配了8页虚拟内存，其中VP0、VP1、VP7是直接映射到物理内存中，VP2、VP3因为暂时没有使用到，所以只是建立与磁盘的映射关系，<strong>在需要时从磁盘读出后加载到物理内存中，提高物理内存使用效率</strong></p>
 <h3 id="内存加载应用程序"><a href="#内存加载应用程序" class="headerlink" title="内存加载应用程序"></a>内存加载应用程序</h3><p>在了解了操作系统是如何处理内存后，那么应用程序是如何加载的呢？在研究这个问题之前，我们先来研究下应用程序到底是什么。</p>
 <p>应用程序是我们编写的代码经过<strong>预编译、编译、汇编和链接之后生成的可执行文件</strong>。我们来看看可执行文件里面到底包含了什么：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">fileName: hello.c</div><div class="line"></div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#define TEST_DEFINE 3</div><div class="line">int global_init_var = 10;</div><div class="line">int global_uninit_var;</div><div class="line">static int global_init_static = 11;</div><div class="line">static int global_uninit_static;</div><div class="line">int main ()</div><div class="line">&#123;</div><div class="line">    int a = 11;</div><div class="line">    int b ;</div><div class="line">    static int c = 20;</div><div class="line">    static int d;</div><div class="line">    printf(&quot;hello world\n&quot;);</div><div class="line">    printf(&quot;%d&quot;, TEST_DEFINE);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -372,7 +372,7 @@
 <li><strong>READONLY</strong> 代表此段只读<br>我们可以执行 <code>xcrun size -x -l -m a.out</code>，分段显示<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ xcrun size -x -l -m a.out</div><div class="line"></div><div class="line">Segment __PAGEZERO: 0x100000000 (vmaddr 0x0 fileoff 0)</div><div class="line">Segment __TEXT: 0x1000 (vmaddr 0x100000000 fileoff 0)</div><div class="line">	Section __text: 0x47 (addr 0x100000f30 offset 3888)</div><div class="line">	Section __stubs: 0x6 (addr 0x100000f78 offset 3960)</div><div class="line">	Section __stub_helper: 0x1a (addr 0x100000f80 offset 3968)</div><div class="line">	Section __cstring: 0x10 (addr 0x100000f9a offset 3994)</div><div class="line">	Section __unwind_info: 0x48 (addr 0x100000fac offset 4012)</div><div class="line">	total 0xbf</div><div class="line">Segment __DATA: 0x1000 (vmaddr 0x100001000 fileoff 4096)</div><div class="line">	Section __nl_symbol_ptr: 0x10 (addr 0x100001000 offset 4096)</div><div class="line">	Section __la_symbol_ptr: 0x8 (addr 0x100001010 offset 4112)</div><div class="line">	Section __data: 0x8 (addr 0x100001018 offset 4120)</div><div class="line">	Section __bss: 0x4 (addr 0x100001020 offset 0)</div><div class="line">	Section __common: 0x4 (addr 0x100001024 offset 0)</div><div class="line">	total 0x28</div><div class="line">Segment __LINKEDIT: 0x1000 (vmaddr 0x100002000 fileoff 8192)</div><div class="line">total 0x100003000</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>通过上面可以看到，该可执行文件包含四个<code>Segment：__PAGEZERO、__TEXT、__DATA、__LINKEDIT</code>，其中有些Segment又分为多个Sections。每一段的内容含义如下：<br><img src="/memory/3.png" alt="" title="图片来自 【Mach-O 文件格式探索】"></p>
+<p>通过上面可以看到，该可执行文件包含四个<code>Segment：__PAGEZERO、__TEXT、__DATA、__LINKEDIT</code>，其中有些Segment又分为多个Sections。每一段的内容含义如下：<br><img src="/images/memory/3.png" alt="" title="图片来自 【Mach-O 文件格式探索】"></p>
 <blockquote>
 <p>“我们很难将“Segment”和“Section”这两个词从中文的翻译上加以区分，因为很多时候Section也被翻译成“段”，回顾第2章，我们也没有很严格区分这两个英文词汇和两个中文词汇“段”和“节”之间的相互翻译。很明显，从链接的角度看，ELF文件是按“Section”存储的，事实也的确如此；从装载的角度看，ELF文件又可以按照“Segment”划分。我们在这里就对“Segment”不作翻译，一律按照原词。”</p>
 <p>“总的来说，“Segment”和“Section”是从不同的角度来划分同一个ELF文件。这个在ELF中被称为不同的视图（View），从“Section”的角度来看ELF文件就是链接视图（Linking View），从“Segment”的角度来看就是执行视图（Execution View）。当我们在谈到ELF装载时，“段”专门指“Segment”；而在其他的情况下，“段”指的是“Section”。</p>
@@ -390,7 +390,7 @@
 <p>  iOS系统可以安全回收的内存。可以是只读数据等<strong>可以被系统安全移除并且重载的数据</strong>或者<strong>其他只是申请但还没有使用的内存</strong>空间</p>
 </li>
 <li><p>Dirty Memory</p>
-<p>  Dirty Memory 指的是被我们App写入的内存、已经解码的图片、Framework 的 <strong><strong>DATA、</strong>DATA_DIRTY</strong>段<br>  <img src="/memory/4.png" alt=""></p>
+<p>  Dirty Memory 指的是被我们App写入的内存、已经解码的图片、Framework 的 <strong><strong>DATA、</strong>DATA_DIRTY</strong>段<br>  <img src="/images/memory/4.png" alt=""></p>
 </li>
 </ul>
 <p>当遇到内存不够时，操作系统会</p>
