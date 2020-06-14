@@ -258,6 +258,203 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="huanghehg.github.io/2020/05/31/memory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huanghe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄河的个人空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/31/memory/" itemprop="url">内存</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-31T10:58:36+08:00">
+                2020-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考文章：</p>
+<p><a href="https://juejin.im/post/5d3ee77ef265da039f1290b2" target="_blank" rel="external">iOS Memory 内存详解 (长文)</a></p>
+<p><a href="https://github.com/Desgard/iOS-Source-Probe/blob/master/C/mach-o/Mach-O%20%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E6%8E%A2%E7%B4%A2.md" target="_blank" rel="external">Mach-O 文件格式探索</a></p>
+<p><a href="https://www.bilibili.com/video/BV1tE411f76p?t=306" target="_blank" rel="external">WWDC2018-深入了解iOS内存</a></p>
+<hr>
+<h3 id="操作系统内存处理机制"><a href="#操作系统内存处理机制" class="headerlink" title="操作系统内存处理机制"></a>操作系统内存处理机制</h3><p>内存是计算机重要组成部分，所有的应用程序在运行时都需要加载到内存中，供CPU读取指令来执行</p>
+<p><img src="/memory/5.png" alt="冯·诺依曼结构" title="冯·诺依曼结构 图片来源[iOS Memory 内存详解 (长文)]"><br>从早期的冯·诺依曼结构可以看出存储器在计算机结构中的重要位置。随着计算机的发展，CPU的执行效率已经远超过存储器，后面为了高效率使用CPU，根据存储器的速度、材料、价位对其进行分级，如下图：<br><img src="/memory/6.png" alt="" title="存储分级 图片来源[iOS Memory 内存详解 (长文)]"></p>
+<p>现在我们讨论的<strong>内存主要指的是主存</strong>，所有的应用程序在运行时都需要加载到内存中，供CPU读取指令来执行。</p>
+<p>早期程序是直接加载到物理内存上面的，这样会有几个问题</p>
+<ol>
+<li>地址不隔离，所有程序都可以访问物理地址，程序的空间不是相互隔离的，恶意程序可能会修改其他程序的内存数据，破坏运行</li>
+<li>程序运行的内存地址不确定，因为程序每次运行时，我们都会分配一个满足运行的空间，导致每次运行时内存是不确定的</li>
+<li>内存使用效率低，当一个程序运行时需要将这个程序全部加载进内存，然后执行，此时如果要执行另外一个程序，内存如果不够，就需要先将其他程序保存至磁盘，等需要的时候再读出来，由于程序运行时地址是连续的，如果此时内存仍然不够，就需要继续将其他程序换出内存，才能运行这个程序</li>
+</ol>
+<p>为了解决以上几种问题，操作系统使用以下方式管理内存</p>
+<ol>
+<li>操作系统采用了<strong>间接地址访问法</strong>，把程序的地址看作<strong>虚拟地址</strong>，当应用程序加载进内存时，操作系统为程序分配一块虚拟的连续的内存地址，然后通过映射方法，将虚拟地址映射到物理地址上，通过控制虚拟地址到物理地址的映射关系，可以达到地址隔离的目的。</li>
+<li>同时由于程序运行具有局部性特征，所以使用<strong>分页</strong>的方式来提高内存使用效率。分页的基本方法是通过将地址空间人为的分为固定大小的页。具体每页的大小由硬件决定，或者硬件支持多种页大小由操作系统决定。<strong>目前几乎所有的PC都是4k大小分页</strong>，几乎所有的硬件都采用一个叫<b>MMU (Memory Management Unit)</b>的部件来进行页映射，MMU一般都在CPU内部集成了，不会单独存在<br><img src="/memory/2.png" alt="" title="图片来自 （俞甲子 石凡 潘爱民. 《程序员的自我修养：链接、装载与库》）"></li>
+<li>同时由于程序只需要关心虚拟内存地址，不需要关系物理内存地址，假设程序每次加载时虚拟地址是固定的，那么编写程序时只需关系虚拟内存地址就好了。（涉及到编译过程的重定向）</li>
+</ol>
+<p><img src="/memory/1.png" alt="" title="图片来自 （俞甲子 石凡 潘爱民. 《程序员的自我修养：链接、装载与库》）"></p>
+<p>如上图：运行程序1时，操作系统为程序1分配了8页虚拟内存，其中VP0、VP1、VP7是直接映射到物理内存中，VP2、VP3因为暂时没有使用到，所以只是建立与磁盘的映射关系，<strong>在需要时从磁盘读出后加载到物理内存中，提高物理内存使用效率</strong></p>
+<h3 id="内存加载应用程序"><a href="#内存加载应用程序" class="headerlink" title="内存加载应用程序"></a>内存加载应用程序</h3><p>在了解了操作系统是如何处理内存后，那么应用程序是如何加载的呢？在研究这个问题之前，我们先来研究下应用程序到底是什么。</p>
+<p>应用程序是我们编写的代码经过<strong>预编译、编译、汇编和链接之后生成的可执行文件</strong>。我们来看看可执行文件里面到底包含了什么：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">fileName: hello.c</div><div class="line"></div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#define TEST_DEFINE 3</div><div class="line">int global_init_var = 10;</div><div class="line">int global_uninit_var;</div><div class="line">static int global_init_static = 11;</div><div class="line">static int global_uninit_static;</div><div class="line">int main ()</div><div class="line">&#123;</div><div class="line">    int a = 11;</div><div class="line">    int b ;</div><div class="line">    static int c = 20;</div><div class="line">    static int d;</div><div class="line">    printf(&quot;hello world\n&quot;);</div><div class="line">    printf(&quot;%d&quot;, TEST_DEFINE);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>执行<code>gcc hello.c</code>可以得到可执行文件<code>a.out</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ file a.out</div><div class="line">a.out: Mach-O 64-bit executable x86_64</div></pre></td></tr></table></figure></p>
+<p>终端执行<code>file a.out</code> ，<strong>可以看到<code>a.out</code>是<code>Mach-O 64</code> 位的可执行文件，此处根据操作系统的不同会有不同的文件格式，但是内容大同小异</strong></p>
+<p>随后我们执行<code>objdump -h a.out</code>查看可执行文件的<code>Section</code>信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">$ objdump -h a.out</div><div class="line"></div><div class="line">a.out:     file format mach-o-x86-64</div><div class="line"></div><div class="line">Sections:</div><div class="line">Idx Name          Size      VMA               LMA               File off  Algn</div><div class="line">  0 .text         00000047  0000000100000f30  0000000100000f30  00000f30  2**4</div><div class="line">                  CONTENTS, ALLOC, LOAD, CODE</div><div class="line">  1 __TEXT.__stubs 00000006  0000000100000f78  0000000100000f78  00000f78  2**1</div><div class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</div><div class="line">  2 __TEXT.__stub_helper 0000001a  0000000100000f80  0000000100000f80  00000f80  2**2</div><div class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</div><div class="line">  3 .cstring      00000010  0000000100000f9a  0000000100000f9a  00000f9a  2**0</div><div class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</div><div class="line">  4 __TEXT.__unwind_info 00000048  0000000100000fac  0000000100000fac  00000fac  2**2</div><div class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</div><div class="line">  5 __DATA.__nl_symbol_ptr 00000010  0000000100001000  0000000100001000  00001000  2**3</div><div class="line">                  CONTENTS, ALLOC, LOAD, DATA</div><div class="line">  6 __DATA.__la_symbol_ptr 00000008  0000000100001010  0000000100001010  00001010  2**3</div><div class="line">                  CONTENTS, ALLOC, LOAD, DATA</div><div class="line">  7 .data         00000008  0000000100001018  0000000100001018  00001018  2**2</div><div class="line">                  CONTENTS, ALLOC, LOAD, DATA</div><div class="line">  8 .bss          00000004  0000000100001020  0000000100001020  00000000  2**2</div><div class="line">                  ALLOC</div><div class="line">  9 __DATA.__common 00000004  0000000100001024  0000000100001024  00000000  2**2</div><div class="line">									ALLOC</div></pre></td></tr></table></figure></p>
+<p>其中每一个<code>section</code>后面都跟上一组<a href="https://stackoverflow.com/questions/11196048/flags-in-objdump-output-of-object-file" target="_blank" rel="external"><code>flag</code></a></p>
+<ul>
+<li><strong>LOAD</strong> 代表当前<strong>Section</strong>位于可以加载的段，当程序运行时，此<strong>Section</strong>的内容可以读取到内存中</li>
+<li><strong>CODE</strong> 代表当前<strong>Section</strong>包含可执行文件</li>
+<li><strong>ALLOC</strong> 代表程序运行时，将占用内存</li>
+<li><strong>READONLY</strong> 代表此段只读<br>我们可以执行 <code>xcrun size -x -l -m a.out</code>，分段显示<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ xcrun size -x -l -m a.out</div><div class="line"></div><div class="line">Segment __PAGEZERO: 0x100000000 (vmaddr 0x0 fileoff 0)</div><div class="line">Segment __TEXT: 0x1000 (vmaddr 0x100000000 fileoff 0)</div><div class="line">	Section __text: 0x47 (addr 0x100000f30 offset 3888)</div><div class="line">	Section __stubs: 0x6 (addr 0x100000f78 offset 3960)</div><div class="line">	Section __stub_helper: 0x1a (addr 0x100000f80 offset 3968)</div><div class="line">	Section __cstring: 0x10 (addr 0x100000f9a offset 3994)</div><div class="line">	Section __unwind_info: 0x48 (addr 0x100000fac offset 4012)</div><div class="line">	total 0xbf</div><div class="line">Segment __DATA: 0x1000 (vmaddr 0x100001000 fileoff 4096)</div><div class="line">	Section __nl_symbol_ptr: 0x10 (addr 0x100001000 offset 4096)</div><div class="line">	Section __la_symbol_ptr: 0x8 (addr 0x100001010 offset 4112)</div><div class="line">	Section __data: 0x8 (addr 0x100001018 offset 4120)</div><div class="line">	Section __bss: 0x4 (addr 0x100001020 offset 0)</div><div class="line">	Section __common: 0x4 (addr 0x100001024 offset 0)</div><div class="line">	total 0x28</div><div class="line">Segment __LINKEDIT: 0x1000 (vmaddr 0x100002000 fileoff 8192)</div><div class="line">total 0x100003000</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通过上面可以看到，该可执行文件包含四个<code>Segment：__PAGEZERO、__TEXT、__DATA、__LINKEDIT</code>，其中有些Segment又分为多个Sections。每一段的内容含义如下：<br><img src="/memory/3.png" alt="" title="图片来自 【Mach-O 文件格式探索】"></p>
+<blockquote>
+<p>“我们很难将“Segment”和“Section”这两个词从中文的翻译上加以区分，因为很多时候Section也被翻译成“段”，回顾第2章，我们也没有很严格区分这两个英文词汇和两个中文词汇“段”和“节”之间的相互翻译。很明显，从链接的角度看，ELF文件是按“Section”存储的，事实也的确如此；从装载的角度看，ELF文件又可以按照“Segment”划分。我们在这里就对“Segment”不作翻译，一律按照原词。”</p>
+<p>“总的来说，“Segment”和“Section”是从不同的角度来划分同一个ELF文件。这个在ELF中被称为不同的视图（View），从“Section”的角度来看ELF文件就是链接视图（Linking View），从“Segment”的角度来看就是执行视图（Execution View）。当我们在谈到ELF装载时，“段”专门指“Segment”；而在其他的情况下，“段”指的是“Section”。</p>
+<p>”摘录来自: 俞甲子 石凡 潘爱民. “程序员的自我修养：链接、装载与库。” </p>
+</blockquote>
+<p>Segment是将权限相同的Sections放在一起，这样在程序加载的时候可以一起映射，减少内存占用。比如上面<code>__TEXT.__stubs</code>和<code>__TEXT.__stub_helper</code>，倘若分开装载的话就需要2页，但是和在一起装载1页内存就可以了</p>
+<p>依据上面我们基本可以得到：<strong>加载应用程序时，根据分页加载机制，将程序根据不同的段映射进虚拟内存空间，此时程序并未加载进内存，只是建立了关系表，当运行到此页时，操作系统根据关系表去磁盘中将对应页加载进虚拟内存同时建立与物理内存的关系，此时应用程序的对应页才真正加载进内存，供cpu执行</strong></p>
+<h3 id="iOS内存管理"><a href="#iOS内存管理" class="headerlink" title="iOS内存管理"></a>iOS内存管理</h3><p>了解了程序是如何加载到内存上的原理后，我们来看下iOS系统加载内存的机制</p>
+<p>iOS系统内存管理也是以页为基本单位，目前大部分为<strong>16kb</strong>，iOS的内存由以下几部分组成：</p>
+<ul>
+<li><p>Compressed Memory</p>
+<p>  被压缩的内存，iOS中没有跟其他操作系统一样，当内存不足时，将不常用的数据换到磁盘，iOS系统会将长时间不使用的内存压缩</p>
+</li>
+<li><p>Clean Memory</p>
+<p>  iOS系统可以安全回收的内存。可以是只读数据等<strong>可以被系统安全移除并且重载的数据</strong>或者<strong>其他只是申请但还没有使用的内存</strong>空间</p>
+</li>
+<li><p>Dirty Memory</p>
+<p>  Dirty Memory 指的是被我们App写入的内存、已经解码的图片、Framework 的 <strong><strong>DATA、</strong>DATA_DIRTY</strong>段<br>  <img src="/memory/4.png" alt=""></p>
+</li>
+</ul>
+<p>当遇到内存不够时，操作系统会</p>
+<ol>
+<li>尝试回收<strong>Clean Memory</strong></li>
+<li>向内存占用过高的App发送内存警告，APP收到警告后尝试自行处理内存</li>
+<li>多次警告依旧内存占用过高，系统会kill进程，就是OOM崩溃</li>
+</ol>
+<p>其中第二步由于<strong>Compressed Memory</strong>的存在会变得有些复杂，例如：</p>
+<ol>
+<li>你的App收到内存警告时，你尝试清理内存</li>
+<li>在清理时系统会把压缩的内存展开，然后清理</li>
+<li>由于系统展开压缩内存反而会导致更多内存占用，有可能导致系统直接kill掉进程</li>
+</ol>
+<p><strong>官方推荐使用NSCache来管理缓存，可以很好的解决此类问题</strong></p>
+<h3 id="iOS常见导致内存泄漏的情况"><a href="#iOS常见导致内存泄漏的情况" class="headerlink" title="iOS常见导致内存泄漏的情况"></a>iOS常见导致内存泄漏的情况</h3><ol>
+<li><a href="https://huanghehg.github.io/2019/02/18/block/">block</a></li>
+<li>图片</li>
+<li>timer</li>
+<li><p>Core Foundation、Core Graphics</p>
+<p>ARC下并不会对CF、CG对象进行管理，所以当我们使用CF对象时一定要记得使用<code>CFRelease</code>、<code>CGPATHRELEASE</code>进行释放</p>
+</li>
+<li>UIWebVIew</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="huanghehg.github.io/2019/12/12/sonarqubeAndOclint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1594,153 +1791,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="huanghehg.github.io/2017/11/09/Cocoapods基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huanghe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄河的个人空间">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/09/Cocoapods基础/" itemprop="url">Cocoapods 基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T15:12:17+08:00">
-                2017-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>从<code>CSDN</code>移动到个人博客</p>
-<p>原文地址<a href="http://blog.csdn.net/u014452002/article/details/51325836" target="_blank" rel="external">http://blog.csdn.net/u014452002/article/details/51325836</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/Cocoapods基础/#post.more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1791,7 +1841,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1813,7 +1863,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1850,7 +1900,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
